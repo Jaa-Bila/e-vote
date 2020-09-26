@@ -15,6 +15,6 @@ return [
 
     'failed' => 'Data KTP tidak ditemukan.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'already_logged_in' => 'Anda tidak bisa login kembali.'
-
+    'already_logged_in' => 'Anda tidak bisa login kembali.',
+    'not_active' => 'Akun anda belum aktif, silahkan hubungi admin'
 ];

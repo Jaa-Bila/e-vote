@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,4 +26,16 @@
         </main>
     </div>
 </body>
+<script>
+    $('ul.nav-treeview li').find('a').each(function () {
+        var link = new RegExp($(this).attr('href')); //Check if some menu compares inside your the browsers link
+        if (link.test(document.location.href)) {
+            if(!$(this).parents().hasClass('active')){
+                $(this).parents('li').addClass('menu-open');
+                $(this).parents().addClass("active");
+                $(this).addClass("active"); //Add this too
+            }
+        }
+    });
+</script>
 </html>

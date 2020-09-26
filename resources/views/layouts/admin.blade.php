@@ -9,14 +9,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('dist/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    @yield('styles')
+    @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -28,7 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">@yield('title')</h1>
+                        <h1 class="m-0 text-dark">@yield('header')</h1>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Active SideBar -->
 <script>
     $('ul.nav-treeview li').find('a').each(function () {
-        var link = new RegExp($(this).attr('href')); //Check if some menu compares inside your the browsers link
+        var link = new RegExp($(this).attr('href'));
         if (link.test(document.location.href)) {
             if(!$(this).parents().hasClass('active')){
                 $(this).parents('li').addClass('menu-open');
@@ -62,6 +62,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     });
 </script>
 
-@yield('scripts')
+@yield('js')
 </body>
 </html>

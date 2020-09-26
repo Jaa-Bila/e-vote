@@ -30,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::DASHBOARD;
 
     /**
      * Create a new controller instance.
@@ -61,6 +61,13 @@ class LoginController extends Controller
         {
             return $this->sendFailedLoginResponse($request);
         }
+
+        if($user->status === 0){
+            throw ValidationException::withMessages([
+                $this->username() => [trans('auth.not_active')],
+            ]);
+        }
+
         if($user->role === 'USER' && $user->last_login_at !== null){
             throw ValidationException::withMessages([
                 $this->username() => [trans('auth.already_logged_in')],

@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->integer('no_urut')->nullable();
             $table->string('no_ktp')->unique();
-            $table->string('no_id');
+            $table->string('nik')->nullable();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
@@ -29,11 +29,12 @@ class CreateUsersTable extends Migration
             $table->string('kabkota')->nullable();
             $table->string('kecamatan')->nullable();
             $table->string('desa_kelurahan')->nullable();
-            $table->string('pendidikan_terakhir');
+            $table->string('pendidikan_terakhir')->nullable();
             $table->text('pengalaman_organisasi')->nullable();
             $table->text('keterangan_tambahan')->nullable();
             $table->enum('role', ['ADMIN', 'PENGAWAS', 'PASLON', 'USER'])->default('USER');
             $table->string('foto')->nullable();
+            $table->smallInteger('status')->default(0);
             $table->dateTime('last_login_at')->nullable()->default(null);
             $table->timestamps();
         });
