@@ -14,6 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         DB::table('users')->insert([
             'name' => 'Admin',
             'no_ktp' => '000001',
@@ -31,7 +35,6 @@ class UserSeeder extends Seeder
             'pendidikan_terakhir' => 'S1',
             'pengalaman_organisasi' => 'Tidak ada',
             'keterangan_tambahan' => null,
-            'role' => 'ADMIN',
             'foto' => null,
             'status' => 1
         ]);
