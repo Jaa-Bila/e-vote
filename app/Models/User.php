@@ -35,4 +35,9 @@ class User extends Authenticatable
     protected $casts = [
         'last_login_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\UserRole');
+    }
 }
