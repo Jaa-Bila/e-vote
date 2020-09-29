@@ -15,10 +15,10 @@ class UserRoleSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('user_roles')->truncate();
+        DB::table('user_role')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        
-        DB::table('user_roles')->insert([
+
+        DB::table('user_role')->insert([
             'user_id' => 1,
             'role_id' => 1,
         ]);

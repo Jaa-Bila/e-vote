@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -77,6 +78,11 @@ class LoginController extends Controller
         $user->save();
 
         auth()->loginUsingId($user->id);
+        $roles = [];
+        foreach(auth()->user()->roles as $role){
+            array_push($roles, $role->role_name);
+        }
+        Session::put('user_roles', $roles);
         return true;
     }
 
