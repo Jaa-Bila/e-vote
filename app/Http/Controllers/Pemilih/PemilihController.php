@@ -136,4 +136,51 @@ class PemilihController extends Controller
         $user->save();
         return redirect()->back()->with('success', 'Berhasil menonaktifkan user');
     }
+
+    public function getUserVote(Request $request)
+    {
+        $data = DB::table('users')
+                ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
+                ->get();
+
+        if ($request->ajax()) {
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn('image', function($row) {
+                    $url = asset($row->foto);
+                    return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
+                })
+                ->rawColumns(['image'])
+                ->make(true);
+        }
+
+        return view('pemilih.daftar_sudah_pilih');
+    }
+
+    public function getUserNotVote(Request $request)
+    {
+        $voted = DB::table('users')
+            ->join('user_votes', 'users.id', '!=', 'user_votes.user_id')
+            ->get();
+
+        $users = User::all();
+        $data = $users->filter(function($user) use ($voted){
+            return !$voted->contains(function($vote) use ($user){
+                 return $vote->user_id == $user->id;
+            });
+        });
+
+        if ($request->ajax()) {
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn('image', function($row) {
+                    $url = asset($row->foto);
+                    return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
+                })
+                ->rawColumns(['image'])
+                ->make(true);
+        }
+
+        return view('pemilih.daftar_belum_pilih');
+    }
 }

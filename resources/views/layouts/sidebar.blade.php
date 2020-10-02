@@ -60,13 +60,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('pemilih.voted')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Sudah Memilih</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('pemilih.not_voted')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Belum Memilih</p>
                             </a>
