@@ -32,20 +32,26 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link  {{ Request::is("*pengawas") ? 'active' : '' }}">
+                    <a href="{{route('pengawas.index')}}" class="nav-link  {{ Request::is("*pengawas") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
                         <p>Daftar Pengawas</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('calon.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-hdd"></i>
                         <p>Daftar Calon</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('pemilih.index')}}" class="nav-link">
+                        <i class="nav-icon fa fa-hdd"></i>
+                        <p>Daftar Pemilih</p>
+                    </a>
+                </li>
                 @endif
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('pemilih.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Daftar Data Pemilih

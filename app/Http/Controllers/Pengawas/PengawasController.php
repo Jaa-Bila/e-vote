@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -13,7 +14,8 @@ class PengawasController extends Controller
 {
     public function index(Request $request)
     {
-        $data = User::latest()->get();
+        $data = DB::table('users')->join('user_role', 'users.id', '=', 'user_role.user_id')
+            ->where('user_role.role_id', 2)->get();
 
         if ($request->ajax()) {
             return DataTables::of($data)
@@ -24,18 +26,9 @@ class PengawasController extends Controller
                 })
                 ->addColumn('action', function($row) {
                     $urlEdit = route('pengawas.edit', $row->id);
-                    $urlApprove = route('pengawas.approve', $row->id);
                     $urlDelete = route('pengawas.destroy', $row->id);
-                    $button = '';
-                    if($row->status === 0){
-                        $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .
-                            csrf_field()  .
-                            '<button class="btn btn-info" type="submit" onclick="return confirm(' .
-                            "'Are you want to approve $row->name ?')" .
-                            '" href="' .  $urlApprove  . '">Approve</button>' .
-                            '</form>';
-                    }
-                    $button = $button .
+
+                    $button =
                         '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         '<form action="' .  $urlDelete  . '" method="post">' .
                         csrf_field()  . method_field("DELETE")  .

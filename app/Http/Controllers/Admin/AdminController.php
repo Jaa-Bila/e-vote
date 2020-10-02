@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -13,7 +14,8 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $data = User::latest()->get();
+        $data = DB::table('users')->join('user_role', 'users.id', '=', 'user_role.user_id')
+            ->where('user_role.role_id', 1)->get();
 
         if ($request->ajax()) {
             return DataTables::of($data)

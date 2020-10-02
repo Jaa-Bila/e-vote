@@ -60,7 +60,12 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
     });
 
     Route::prefix('/pemilih')->group(function(){
-
+        Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
+        Route::get('/create', [PemilihController::class, 'create'])->name('pemilih.create');
+        Route::get('/{user}', [PemilihController::class, 'edit'])->name('pemilih.edit');
+        Route::post('/', [PemilihController::class, 'store'])->name('pemilih.store');
+        Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
+        Route::delete('/{user}', [PemilihController::class, 'destroy'])->name('pemilih.destroy');
     });
 });
 

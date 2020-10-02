@@ -23,13 +23,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pemilih/PemilihController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pemilih/PemilihController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/paslon/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/paslon/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/paslon/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,6 +169,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -194,6 +191,8 @@
       <workItem from="1601095056886" duration="13655000" />
       <workItem from="1601527863301" duration="711000" />
       <workItem from="1601587574202" duration="2221000" />
+      <workItem from="1601642181504" duration="126000" />
+      <workItem from="1601642316675" duration="1577000" />
     </task>
     <servers />
   </component>
@@ -217,10 +216,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600529817110" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601588223673">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601643354005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601588223673" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601643354005" />
     <state x="794" y="439" key="NewPhpFileDialog" timestamp="1601116728013">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -229,6 +228,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="813" y="139" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601588190179" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1601642307625">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601642307625" />
     <state x="777" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601112139989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
