@@ -22,6 +22,12 @@ Auth::routes([
     'reset' => false,
     'verify' => false,
 ]);
+Route::get('/', function () {
+    return redirect( route('login')) ;
+});
+Route::get('/home', function () {
+    return redirect( route('dashboard')) ;
+});
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::middleware(['auth', 'role:ADMIN'])->group(function() {
