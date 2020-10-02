@@ -38,4 +38,16 @@
         }
     });
 </script>
+<!-- jQuery -->
+<script src="{{ asset('dist/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('dist/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.js') }}"></script>
+<!-- ChartJS -->
+{{-- <script src="plugins/chart.js/Chart.min.js"></script> --}}
+
+
+<!-- PAGE SCRIPTS -->
+{{-- <script src="dist/js/pages/dashboard2.js"></script> --}}
 </html>
