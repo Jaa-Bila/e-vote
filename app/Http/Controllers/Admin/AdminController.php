@@ -92,6 +92,7 @@ class AdminController extends Controller
             'kecamatan' => $request->kecamatan,
             'desa_kelurahan' => $request->desa_kelurahan,
             'foto' => $imagePath,
+            'status' => 1
         ]);
 
         $user->roles()->attach([1, 4]);

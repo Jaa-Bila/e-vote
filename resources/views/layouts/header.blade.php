@@ -12,7 +12,7 @@
         <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{auth()->user()->name}}</span>
         </a>
-            @if(in_array('ADMIN', Session::get('user_roles')))
+            @if(in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')) || in_array('PASLON', Session::get('user_roles')))
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();

@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Yajra\DataTables\DataTables;
 
 class PemilihController extends Controller
@@ -83,6 +84,7 @@ class PemilihController extends Controller
             'kecamatan' => $request->kecamatan,
             'desa_kelurahan' => $request->desa_kelurahan,
             'foto' => $imagePath,
+            'status' => 1
         ]);
 
         $user->roles()->attach([4]);
@@ -160,7 +162,7 @@ class PemilihController extends Controller
     public function getUserNotVote(Request $request)
     {
         $voted = DB::table('users')
-            ->join('user_votes', 'users.id', '!=', 'user_votes.user_id')
+            ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
             ->get();
 
         $users = User::all();
@@ -182,5 +184,43 @@ class PemilihController extends Controller
         }
 
         return view('pemilih.daftar_belum_pilih');
+    }
+
+    public function votePage()
+    {
+        $paslon = DB::table('users')
+            ->join('user_role', 'users.id', '=', 'user_role.user_id')
+            ->where('user_role.role_id', 3)
+            ->get();
+
+        return view('pemilih.vote', ['datas' => $paslon]);
+    }
+
+    public function vote(Request $request)
+    {
+        try{
+            $imagename = "vote-".Carbon::now()->format('dmyHis  ') . ".png";
+            $imagePath = 'storage/image/' . $imagename;
+            $img = str_replace('data:image/png;base64,', '', $request->foto_selfie);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            file_put_contents(public_path($imagePath), $data);
+
+            DB::table('user_votes')->insert([
+                'user_id' => $request->user_id,
+                'paslon_id' => $request->paslon_id,
+                'vote_selfie' => $imagePath
+            ]);
+
+            auth()->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+        }catch (\Exception $e){
+            return response()->json($e->getMessage());
+        }
+
+        return response()->json($request->all());
     }
 }

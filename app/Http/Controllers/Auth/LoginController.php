@@ -57,7 +57,7 @@ class LoginController extends Controller
 
     protected function attemptLogin(Request $request)
     {
-        $user = User::find($request->no_ktp);
+        $user = User::where('no_ktp', $request->no_ktp)->first();
         if(is_null($user))
         {
             return $this->sendFailedLoginResponse($request);

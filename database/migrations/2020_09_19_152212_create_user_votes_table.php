@@ -17,6 +17,7 @@ class CreateUserVotesTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('paslon_id');
+            $table->string('vote_selfie');
             $table->timestamps();
         });
     }

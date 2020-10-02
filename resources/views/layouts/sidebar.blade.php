@@ -108,6 +108,12 @@
                         <p>Pengaturan Web</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('pemilih.vote_page')}}" class="nav-link">
+                        <i class="nav-icon fa fa-vote-yea"></i>
+                        <p>Pilih Kades</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

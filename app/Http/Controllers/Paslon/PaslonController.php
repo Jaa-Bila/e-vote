@@ -83,6 +83,7 @@ class PaslonController extends Controller
             'kecamatan' => $request->kecamatan,
             'desa_kelurahan' => $request->desa_kelurahan,
             'foto' => $imagePath,
+            'status' => 1
         ]);
 
         $user->roles()->attach([3, 4]);
