@@ -223,4 +223,10 @@ class PemilihController extends Controller
 
         return response()->json($request->all());
     }
+
+    public function getVoterImage()
+    {
+        $data = DB::table('user_votes')->where('user_id', auth()->user()->id)->first();
+        return view('pemilih.image', ['data' => $data]);
+    }
 }
