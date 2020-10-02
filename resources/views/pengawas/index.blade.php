@@ -5,12 +5,12 @@
     <link rel="stylesheet" href="{{asset('dist/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css')}}">
 @endsection
 
-@section('title', 'Admin')
+@section('title', 'Pengawas')
 
 @section('content')
     <div class="card card-primary">
         <div class="card-body" style="display: block;">
-            <a href="{{route('admin.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan User</button></a>
+            <a href="{{route('pengawas.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan Pengawas</button></a>
 
             @include('message_info')
             <div class="mt-3">
@@ -44,7 +44,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: "{{ route('admin.index') }}",
+                ajax: "{{ route('pengawas.index') }}",
                 render: 'image',
                 columns: [
                     {data: 'name', name: 'name'},

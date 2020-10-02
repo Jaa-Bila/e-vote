@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         @include('message_info')
-        <form id="form_id" role="form" action="{{route('admin.store')}}" method="POST" enctype="multipart/form-data">
+        <form id="form_id" role="form" action="{{route('calon.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
@@ -120,7 +120,7 @@
                 <div class="col-sm-offset-3 col-sm-7 float-sm-right text-right">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="button" onclick="reset()" class="btn btn-warning">Reset</button>
-                    <a href="{{route('admin.index')}}" type="button" class="btn btn-default">Batal</a>
+                    <a href="{{route('calon.index')}}" type="button" class="btn btn-default">Batal</a>
                 </div>
             </div>
 

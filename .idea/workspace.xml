@@ -21,15 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="ebe7a381-19f9-4434-bd71-1e60efe88281" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckRoles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckRoles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/UserRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/UserRole.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_27_133405_create_user_roles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_27_133405_create_user_role_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserRoleSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserRoleSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/paslon/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/paslon/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/paslon/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,6 +192,8 @@
       <workItem from="1600527503085" duration="2951000" />
       <workItem from="1600789261705" duration="5646000" />
       <workItem from="1601095056886" duration="13655000" />
+      <workItem from="1601527863301" duration="711000" />
+      <workItem from="1601587574202" duration="2221000" />
     </task>
     <servers />
   </component>
@@ -214,18 +217,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600529817110" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600793539569">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601588223673">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600793539569" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601588223673" />
     <state x="794" y="439" key="NewPhpFileDialog" timestamp="1601116728013">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="439" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601116728013" />
-    <state x="813" y="139" key="RollbackChangesDialog" timestamp="1601392556138">
+    <state x="813" y="139" key="RollbackChangesDialog" timestamp="1601588190179">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="813" y="139" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601392556138" />
+    <state x="813" y="139" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601588190179" />
     <state x="777" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601112139989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

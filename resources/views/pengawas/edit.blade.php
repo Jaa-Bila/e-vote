@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         @include('message_info')
-        <form id="form_id" role="form" action="{{route('admin.update', $user->id)}}" method="POST" enctype="multipart/form-data">
+        <form id="form_id" role="form" action="{{route('pengawas.update', $user->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body">
@@ -121,7 +121,7 @@
                 <div class="col-sm-offset-3 col-sm-7 float-sm-right text-right">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="button" onclick="reset()" class="btn btn-warning">Reset</button>
-                    <a href="{{route('admin.index')}}" type="button" class="btn btn-default">Batal</a>
+                    <a href="{{route('pengawas.index')}}" type="button" class="btn btn-default">Batal</a>
                 </div>
             </div>
 

@@ -20,7 +20,7 @@ class AdminController extends Controller
                 ->addIndexColumn()
                 ->editColumn('image', function($row) {
                     $url = asset($row->foto);
-                    return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';;
+                    return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
                 ->addColumn('action', function($row) {
                     $urlEdit = route('admin.edit', $row->id);
@@ -74,7 +74,7 @@ class AdminController extends Controller
         $image->move('storage/image/', $imagename);
         $imagePath = 'storage/image/' . $imagename;
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'no_urut' => $request->no_urut,
             'nik' => $request->nik,
@@ -91,6 +91,8 @@ class AdminController extends Controller
             'desa_kelurahan' => $request->desa_kelurahan,
             'foto' => $imagePath,
         ]);
+
+        $user->roles()->attach([1, 4]);
 
         return redirect()->route('admin.index')->with('success', 'Berhasil menambahkan user');
     }
