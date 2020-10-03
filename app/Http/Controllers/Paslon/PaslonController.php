@@ -34,8 +34,8 @@ class PaslonController extends Controller
                     $urlDelete = route('calon.destroy', $row->id);
 
                     $button =
-                        '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         '<form action="' .  $urlDelete  . '" method="post">' .
+                        '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         csrf_field()  . method_field("DELETE")  .
                         '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
                         "'Are you sure delete $row->name ?')" .

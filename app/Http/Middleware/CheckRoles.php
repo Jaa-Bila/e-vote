@@ -18,6 +18,10 @@ class CheckRoles
      */
     public function handle(Request $request, Closure $next, $role)
     {
+        if(in_array('ADMIN', Session::get('user_roles'))){
+            return $next($request);
+        }
+
         if(in_array($role, Session::get('user_roles'))){
             return $next($request);
         }

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid">
-  @if (in_array('ADMIN', Session::get('user_roles')))
+  @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
   <div class="row">
     <div class="col-12 col-sm-6 col-md-6">
       <div class="card">

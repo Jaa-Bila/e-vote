@@ -7,8 +7,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Yajra\DataTables\DataTables;
 
 class PemilihController extends Controller
@@ -32,8 +32,8 @@ class PemilihController extends Controller
                     $urlEdit = route('pemilih.edit', $row->id);
                     $urlDelete = route('pemilih.destroy', $row->id);
                     $button =
-                        '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         '<form action="' .  $urlDelete  . '" method="post">' .
+                        '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         csrf_field()  . method_field("DELETE")  .
                         '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
                         "'Are you sure delete $row->name ?')" .
@@ -195,6 +195,15 @@ class PemilihController extends Controller
     public function vote(Request $request)
     {
         try{
+            $user = User::find(auth()->user()->id);
+            $roles = Session::get('user_roles');
+
+            if(count($roles) === 1 && in_array('USER', $roles))
+            {
+                $user->status = 0;
+                $user->save();
+            }
+
             $imagename = "vote-".Carbon::now()->format('dmyHis  ') . ".png";
             $imagePath = 'storage/image/' . $imagename;
             $img = str_replace('data:image/png;base64,', '', $request->foto_selfie);

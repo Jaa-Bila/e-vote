@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserRole;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -68,14 +69,6 @@ class LoginController extends Controller
                 $this->username() => [trans('auth.not_active')],
             ]);
         }
-
-        if($user->role === 'USER' && $user->last_login_at !== null){
-            throw ValidationException::withMessages([
-                $this->username() => [trans('auth.already_logged_in')],
-            ]);
-        }
-        $user->last_login_at = Carbon::now();
-        $user->save();
 
         auth()->loginUsingId($user->id);
         $roles = [];

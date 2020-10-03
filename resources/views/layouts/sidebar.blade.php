@@ -18,12 +18,14 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">Menu Utama</li>
+                @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is("*dashboard") ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @endif
                 @if (in_array('ADMIN', Session::get('user_roles')))
                 <li class="nav-item">
                     <a href="{{route('admin.index')}}" class="nav-link {{ Request::is("*admin") ? 'active' : '' }}">
@@ -50,8 +52,9 @@
                     </a>
                 </li>
                 @endif
+                @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
                 <li class="nav-item has-treeview">
-                    <a href="{{route('pemilih.index')}}" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Daftar Data Pemilih
@@ -73,6 +76,8 @@
                         </li>
                     </ul>
                 </li>
+                @endif
+                @if (in_array('ADMIN', Session::get('user_roles')))
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-folder"></i>
@@ -108,6 +113,7 @@
                         <p>Pengaturan Web</p>
                     </a>
                 </li>
+                @endif
                 @if(auth()->user()->vote == null)
                 <li class="nav-item">
                     <a href="{{route('pemilih.vote_page')}}" class="nav-link">

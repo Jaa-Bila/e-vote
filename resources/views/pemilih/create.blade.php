@@ -20,7 +20,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No Urut Pemilih</label>
                     <div class="col-sm-10">
-                        <input type="text" name="address" class="form-control" value="{{$user->no_urut + 1}}" placeholder="Alamat Customer" required readonly>
+                        <input type="text" name="no_urut" class="form-control" value="{{$user->no_urut + 1}}" placeholder="Alamat Customer" required readonly>
                     </div>
                 </div>
 

@@ -19,7 +19,7 @@
                     <tr>
                         <th>No Urut</th>
                         <th>ID</th>
-                        <th>Nama Pemilih</th>
+                        <th>Nama</th>
                         <th>L/P</th>
                         <th>NIK</th>
                         <th>Pekerjaan</th>
