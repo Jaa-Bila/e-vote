@@ -71,7 +71,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
     });
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth', 'check_vote'])->group(function(){
     Route::get('/pilkades', [PemilihController::class, 'votePage'])->name('pemilih.vote_page');
     Route::get('/pilkades/foto', [PemilihController::class, 'getVoterImage'])->name('pemilih.voter_image');
     Route::post('/pilkades', [PemilihController::class, 'vote'])->name('pemilih.vote');

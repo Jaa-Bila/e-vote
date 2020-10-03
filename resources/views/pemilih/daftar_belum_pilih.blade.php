@@ -14,7 +14,6 @@
                 <table class="data-table display nowrap" style="width:100%">
                     <thead>
                     <tr>
-                        <th>No Urut</th>
                         <th>ID</th>
                         <th>Nama Pemilih</th>
                         <th>L/P</th>
@@ -43,8 +42,7 @@
                 ajax: "{{ route('pemilih.not_voted') }}",
                 render: 'image',
                 columns: [
-                    {data: 'name', name: 'name'},
-                    {data: 'id', name: 'id'},
+                    {data: 'no_ktp', name: 'no_ktp'},
                     {data: 'name', name: 'name'},
                     {data: 'jenis_kelamin', name: 'jenis_kelamin'},
                     {data: 'nik', name: 'nik'},

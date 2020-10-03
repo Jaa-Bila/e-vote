@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Pemilih')
+@section('title', 'Tambah Calon')
 
-@section('header', 'Tambah Pemilih')
+@section('header', 'Tambah Calon')
 
 @section('content')
     <div class="container">
@@ -11,16 +11,28 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nama Pemilih</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control" value="" placeholder="Nama Lengkap" required>
+                    <label class="col-sm-2 col-form-label">Kecamatan</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="kecamatan" class="form-control" value="" placeholder="Kecamatan" required>
+                    </div>
+
+                    <label class="col-sm-2 col-form-label">Desa/Kelurahan</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="desa_kelurahan" class="form-control" value="" placeholder="Desa/Kelurahan" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">No Urut Pemilih</label>
+                    <label class="col-sm-2 col-form-label">No Urut Calon</label>
                     <div class="col-sm-10">
-                        <input type="text" name="address" class="form-control" value="{{$user->no_urut + 1}}" placeholder="Alamat Customer" required readonly>
+                        <input type="text" name="no_urut_calon" class="form-control" value="{{$user->no_urut_calon + 1}}" placeholder="No Urut Calon" required readonly>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nama Calon Kepala Desa</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" value="" placeholder="Nama Lengkap" required>
                     </div>
                 </div>
 
@@ -28,13 +40,6 @@
                     <label class="col-sm-2 col-form-label">NIK</label>
                     <div class="col-sm-10">
                         <input type="text" name="nik" class="form-control" value="" placeholder="NIK" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">No ID</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="no_ktp" class="form-control" value="" placeholder="ID" required>
                     </div>
                 </div>
 
@@ -76,6 +81,13 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Pendidikan Terakhir</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pendidikan_terakhir" class="form-control" value="" placeholder="Pendidikan Terakhir" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Pekerjaan</label>
                     <div class="col-sm-10">
                         <input type="text" name="pekerjaan" class="form-control" value="" placeholder="Pekerjaan" required>
@@ -83,37 +95,23 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Provinsi</label>
+                    <label class="col-sm-2 col-form-label">Pengalaman Organisasi</label>
                     <div class="col-sm-10">
-                        <input type="text" name="provinsi" class="form-control" value="" placeholder="Provinsi" required>
+                        <textarea name="pengalaman_organisasi" class="form-control" required></textarea>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Kabupaten/Kota</label>
+                    <label class="col-sm-2 col-form-label">Keterangan Tambahan</label>
                     <div class="col-sm-10">
-                        <input type="text" name="kabkota" class="form-control" value="" placeholder="Kabupaten/Kota" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Kecamatan</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="kecamatan" class="form-control" value="" placeholder="Kecamatan" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Desa/Kelurahan</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="desa_kelurahan" class="form-control" value="" placeholder="Desa/Kelurahan" required>
+                        <textarea name="keterangan_tambahan" class="form-control" required></textarea>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
-                        <input type="file" name="image" class="form-control" required>
+                        <input id="upload_image" type="file" name="image" class="form-control" required accept="image/x-png,image/gif,image/jpeg">
                     </div>
                 </div>
 
@@ -133,5 +131,11 @@
         function reset(){
             $('#form_id').trigger("reset");
         }
+        $('#upload_image').on('change', function (e) {
+            if(this.files[0].size > 2097152){
+                alert("Ukuran foto terlalu besar (max. 2MB)");
+                this.value = "";
+            }
+        })
     </script>
 @endsection

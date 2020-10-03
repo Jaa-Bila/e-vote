@@ -47,8 +47,8 @@
                 ajax: "{{ route('pemilih.index') }}",
                 render: 'image',
                 columns: [
-                    {data: 'name', name: 'name'},
-                    {data: 'id', name: 'id'},
+                    {data: 'no_urut', name: 'no_urut'},
+                    {data: 'no_ktp', name: 'no_ktp'},
                     {data: 'name', name: 'name'},
                     {data: 'jenis_kelamin', name: 'jenis_kelamin'},
                     {data: 'nik', name: 'nik'},

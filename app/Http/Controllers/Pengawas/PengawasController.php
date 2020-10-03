@@ -14,7 +14,9 @@ class PengawasController extends Controller
 {
     public function index(Request $request)
     {
-        $data = DB::table('users')->join('user_role', 'users.id', '=', 'user_role.user_id')
+        $data = DB::table('users')
+            ->join('user_role', 'users.id', '=', 'user_role.user_id')
+            ->select('users.*')
             ->where('user_role.role_id', 2)->get();
 
         if ($request->ajax()) {
@@ -49,13 +51,6 @@ class PengawasController extends Controller
     {
         $user = User::latest()->first();
         return view('pengawas.create', ['user' => $user]);
-    }
-
-    public function approve(User $user)
-    {
-        $user->status = 1;
-        $user->save();
-        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
     }
 
     public function store(Request $request)

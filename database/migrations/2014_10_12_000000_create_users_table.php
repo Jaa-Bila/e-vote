@@ -17,8 +17,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('no_urut')->nullable();
-            $table->string('no_ktp')->unique();
-            $table->string('nik')->nullable();
+            $table->integer('no_urut_calon')->nullable();
+            $table->string('no_ktp')->nullable();
+            $table->string('nik')->unique()->nullable();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);

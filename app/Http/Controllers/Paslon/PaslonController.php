@@ -14,7 +14,9 @@ class PaslonController extends Controller
 {
     public function index(Request $request)
     {
-        $data = DB::table('users')->join('user_role', 'users.id', '=', 'user_role.user_id')
+        $data = DB::table('users')
+            ->join('user_role', 'users.id', '=', 'user_role.user_id')
+            ->select('users.*')
             ->where('user_role.role_id', 3)->get();
 
         if ($request->ajax()) {
@@ -23,6 +25,9 @@ class PaslonController extends Controller
                 ->editColumn('image', function($row) {
                     $url = asset($row->foto);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
+                })
+                ->addColumn('ttl', function ($row){
+                    return $row->tempat_lahir . ', ' . $row->tanggal_lahir;
                 })
                 ->addColumn('action', function($row) {
                     $urlEdit = route('calon.edit', $row->id);
@@ -51,13 +56,6 @@ class PaslonController extends Controller
         return view('paslon.create', ['user' => $user]);
     }
 
-    public function approve(User $user)
-    {
-        $user->status = 1;
-        $user->save();
-        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
-    }
-
     public function store(Request $request)
     {
         $image = $request->file('image');
@@ -69,19 +67,19 @@ class PaslonController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'no_urut' => $request->no_urut,
+            'no_urut_calon' => $request->no_urut_calon,
             'nik' => $request->nik,
-            'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
             'agama' => $request->agama,
             'alamat' => $request->alamat,
             'pekerjaan' => $request->pekerjaan,
-            'provinsi' => $request->provinsi,
-            'kabkota' => $request->kabkota,
             'kecamatan' => $request->kecamatan,
             'desa_kelurahan' => $request->desa_kelurahan,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'pengalaman_organisasi' => $request->pengalaman_organisasi,
+            'keterangan_tambahan' => $request->keterangan_tambahan,
             'foto' => $imagePath,
             'status' => 1
         ]);
@@ -113,19 +111,18 @@ class PaslonController extends Controller
 
         $user->update([
             'name' => $request->name,
-            'no_urut' => $request->no_urut,
             'nik' => $request->nik,
-            'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
             'agama' => $request->agama,
             'alamat' => $request->alamat,
             'pekerjaan' => $request->pekerjaan,
-            'provinsi' => $request->provinsi,
-            'kabkota' => $request->kabkota,
             'kecamatan' => $request->kecamatan,
             'desa_kelurahan' => $request->desa_kelurahan,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'pengalaman_organisasi' => $request->pengalaman_organisasi,
+            'keterangan_tambahan' => $request->keterangan_tambahan
         ]);
 
         return redirect()->route('calon.index')->with('success', 'Berhasil memperbarui data user');

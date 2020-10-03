@@ -41,4 +41,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id')
             ->using(UserRole::class);
     }
+
+    public function vote()
+    {
+        return $this->hasOne(UserVote::class, 'user_id', 'id');
+    }
 }

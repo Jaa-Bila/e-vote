@@ -10,16 +10,15 @@
 @section('content')
     <div class="card card-primary">
         <div class="card-body" style="display: block;">
-            <a href="{{route('admin.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan User</button></a>
+            <a href="{{route('admin.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan Admin</button></a>
 
             @include('message_info')
             <div class="mt-3">
                 <table class="data-table display nowrap" style="width:100%">
                     <thead>
                     <tr>
-                        <th>No Urut</th>
                         <th>ID</th>
-                        <th>Nama Pemilih</th>
+                        <th>Nama</th>
                         <th>L/P</th>
                         <th>NIK</th>
                         <th>Pekerjaan</th>
@@ -47,7 +46,6 @@
                 ajax: "{{ route('admin.index') }}",
                 render: 'image',
                 columns: [
-                    {data: 'name', name: 'name'},
                     {data: 'no_ktp', name: 'no_ktp'},
                     {data: 'name', name: 'name'},
                     {data: 'jenis_kelamin', name: 'jenis_kelamin'},

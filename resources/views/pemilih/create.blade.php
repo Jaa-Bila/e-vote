@@ -113,7 +113,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
-                        <input type="file" name="image" class="form-control" required>
+                        <input id="upload_image" type="file" name="image" class="form-control" required accept="image/x-png,image/gif,image/jpeg">
                     </div>
                 </div>
 
@@ -133,5 +133,11 @@
         function reset(){
             $('#form_id').trigger("reset");
         }
+        $('#upload_image').on('change', function (e) {
+            if(this.files[0].size > 2097152){
+                alert("Ukuran foto terlalu besar (max. 2MB)");
+                this.value = "";
+            }
+        })
     </script>
 @endsection

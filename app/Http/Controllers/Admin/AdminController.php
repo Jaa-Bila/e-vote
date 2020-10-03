@@ -14,7 +14,9 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $data = DB::table('users')->join('user_role', 'users.id', '=', 'user_role.user_id')
+        $data = DB::table('users')
+            ->join('user_role', 'users.id', '=', 'user_role.user_id')
+            ->select('users.*')
             ->where('user_role.role_id', 1)->get();
 
         if ($request->ajax()) {

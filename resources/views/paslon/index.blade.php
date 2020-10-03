@@ -17,12 +17,14 @@
                 <table class="data-table display nowrap" style="width:100%">
                     <thead>
                     <tr>
-                        <th>No Urut</th>
-                        <th>ID</th>
-                        <th>Nama Pemilih</th>
+                        <th>No Urut Calon</th>
+                        <th>Nama</th>
+                        <th>TTL</th>
+                        <th>Agama</th>
                         <th>L/P</th>
-                        <th>NIK</th>
+                        <th>Pendidikan Terakhir</th>
                         <th>Pekerjaan</th>
+                        <th>Desa</th>
                         <th>Foto</th>
                         <th>Action</th>
                     </tr>
@@ -47,12 +49,14 @@
                 ajax: "{{ route('calon.index') }}",
                 render: 'image',
                 columns: [
+                    {data: 'no_urut_calon', name: 'no_urut_calon'},
                     {data: 'name', name: 'name'},
-                    {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
+                    {data: 'ttl', name: 'ttl'},
+                    {data: 'agama', name: 'agama'},
                     {data: 'jenis_kelamin', name: 'jenis_kelamin'},
-                    {data: 'nik', name: 'nik'},
+                    {data: 'pendidikan_terakhir', name: 'pendidikan_terakhir'},
                     {data: 'pekerjaan', name: 'pekerjaan'},
+                    {data: 'desa_kelurahan', name: 'desa_kelurahan'},
                     {data: 'image', name: 'image'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]

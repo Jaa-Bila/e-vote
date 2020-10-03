@@ -15,8 +15,11 @@ class PemilihController extends Controller
 {
     public function index(Request $request)
     {
-        $data = DB::table('users')->join('user_role', 'users.id', '=', 'user_role.user_id')
-            ->where('user_role.role_id', 4)->get();
+        $data = DB::table('users')
+            ->join('user_role', 'users.id', '=', 'user_role.user_id')
+            ->select('users.*')
+            ->where('user_role.role_id', 4)
+            ->get();
 
         if ($request->ajax()) {
             return DataTables::of($data)
@@ -28,7 +31,6 @@ class PemilihController extends Controller
                 ->addColumn('action', function($row) {
                     $urlEdit = route('pemilih.edit', $row->id);
                     $urlDelete = route('pemilih.destroy', $row->id);
-
                     $button =
                         '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         '<form action="' .  $urlDelete  . '" method="post">' .
@@ -50,13 +52,6 @@ class PemilihController extends Controller
     {
         $user = User::latest()->first();
         return view('pemilih.create', ['user' => $user]);
-    }
-
-    public function approve(User $user)
-    {
-        $user->status = 1;
-        $user->save();
-        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
     }
 
     public function store(Request $request)
@@ -149,7 +144,7 @@ class PemilihController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('image', function($row) {
-                    $url = asset($row->foto);
+                    $url = asset($row->vote_selfie);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
                 ->rawColumns(['image'])
@@ -191,6 +186,7 @@ class PemilihController extends Controller
         $paslon = DB::table('users')
             ->join('user_role', 'users.id', '=', 'user_role.user_id')
             ->where('user_role.role_id', 3)
+            ->select('users.*')
             ->get();
 
         return view('pemilih.vote', ['datas' => $paslon]);
