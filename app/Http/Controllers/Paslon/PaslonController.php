@@ -84,8 +84,8 @@ class PaslonController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'no_urut_calon' => $latestUser->no_urut_calon,
-            'no_urut' => $latestUser->no_urut,
+            'no_urut_calon' => $latestUser->no_urut_calon + 1,
+            'no_urut' => $latestUser->no_urut + 1,
             'nik' => $request->nik,
             'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,

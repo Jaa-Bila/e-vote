@@ -7,8 +7,9 @@
 @section('content')
     <div class="container">
         @include('message_info')
-        <form id="form_id" role="form" action="{{route('calon.store')}}" method="POST" enctype="multipart/form-data">
+        <form id="form_id" role="form" action="{{route('calon.update', $user->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="card-body">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Kecamatan</label>

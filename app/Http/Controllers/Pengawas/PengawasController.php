@@ -81,7 +81,7 @@ class PengawasController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'no_urut' => $latestUser->no_urut,
+            'no_urut' => $latestUser->no_urut + 1,
             'nik' => $request->nik,
             'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,
