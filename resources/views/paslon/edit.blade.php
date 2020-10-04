@@ -13,12 +13,12 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Kecamatan</label>
                     <div class="col-sm-4">
-                        <input type="text" name="kecamatan" class="form-control" value="" placeholder="Kecamatan" required>
+                        <input type="text" name="kecamatan" class="form-control" value="{{$user->kecamatan}}" placeholder="Kecamatan" required>
                     </div>
 
                     <label class="col-sm-2 col-form-label">Desa/Kelurahan</label>
                     <div class="col-sm-4">
-                        <input type="text" name="desa_kelurahan" class="form-control" value="" placeholder="Desa/Kelurahan" required>
+                        <input type="text" name="desa_kelurahan" class="form-control" value="{{$user->desa_kelurahan}}" placeholder="Desa/Kelurahan" required>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <textarea name="alamat" class="form-control" placeholder="Alamat" required>{{$user->alamat}}}</textarea>
+                        <textarea name="alamat" class="form-control" placeholder="Alamat" required>{{$user->alamat}}</textarea>
                     </div>
                 </div>
 
