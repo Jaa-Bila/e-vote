@@ -30,9 +30,9 @@ class PaslonController extends Controller
                     return $row->tempat_lahir . ', ' . $row->tanggal_lahir;
                 })
                 ->addColumn('action', function($row) {
-                    $urlEdit = route('admin.edit', $row->id);
-                    $urlApprove = route('admin.approve', $row->id);
-                    $urlDelete = route('admin.destroy', $row->id);
+                    $urlEdit = route('calon.edit', $row->id);
+                    $urlApprove = route('calon.approve', $row->id);
+                    $urlDelete = route('calon.destroy', $row->id);
                     $button = '';
                     if($row->status === 0){
                         $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .

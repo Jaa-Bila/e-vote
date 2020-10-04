@@ -29,9 +29,9 @@ class PemilihController extends Controller
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
                 ->addColumn('action', function($row) {
-                    $urlEdit = route('admin.edit', $row->id);
-                    $urlApprove = route('admin.approve', $row->id);
-                    $urlDelete = route('admin.destroy', $row->id);
+                    $urlEdit = route('pemilih.edit', $row->id);
+                    $urlApprove = route('pemilih.approve', $row->id);
+                    $urlDelete = route('pemilih.destroy', $row->id);
                     $button = '';
                     if($row->status === 0){
                         $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .
