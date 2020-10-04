@@ -51,6 +51,13 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">No ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="no_ktp" class="form-control" value="" placeholder="ID" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">NIK</label>
                     <div class="col-sm-10">
                         <input type="text" name="nik" class="form-control" value="" placeholder="NIK" required>
