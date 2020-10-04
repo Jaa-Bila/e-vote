@@ -73,6 +73,7 @@ class PemilihController extends Controller
 
     public function store(Request $request)
     {
+        $latestUser = User::latest()->first();
         $image = $request->file('image');
         $ext = $image->getClientOriginalExtension();
         $imagename = Carbon::now()->format('dmYHis') . '.' . $ext;
@@ -82,7 +83,7 @@ class PemilihController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'no_urut' => $request->no_urut,
+            'no_urut' => $latestUser->no_urut,
             'nik' => $request->nik,
             'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,
