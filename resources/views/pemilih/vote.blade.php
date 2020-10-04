@@ -11,8 +11,8 @@
                     <div class="widget-user-header bg-info">
                         <h3 class="widget-user-username text-center">{{$data->name}}</h3>
                     </div>
-                    <div class="widget-user-image">
-                        <img class="rounded-circle elevation-2" src="{{asset($data->foto)}}" alt="User Avatar">
+                    <div class="widget-user-image text-center">
+                        <img class="mt-3 rounded-circle elevation-2" style="width: 100px; height: 100px" src="{{asset($data->foto)}}" alt="User Avatar">
                     </div>
                     <div class="card-footer">
                         <div class="row" style="height: 300px">

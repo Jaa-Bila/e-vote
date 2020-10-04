@@ -23,6 +23,20 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Provinsi</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="provinsi" class="form-control" value="" placeholder="Provinsi" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Kabupaten/Kota</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="kabkota" class="form-control" value="" placeholder="Kabupaten/Kota" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No Urut Calon</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" value="{{$user->no_urut_calon + 1}}" placeholder="No Urut Calon" required readonly>

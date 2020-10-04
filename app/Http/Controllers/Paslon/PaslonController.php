@@ -87,6 +87,7 @@ class PaslonController extends Controller
             'no_urut_calon' => $request->no_urut_calon,
             'no_urut' => $latestUser->no_urut,
             'nik' => $request->nik,
+            'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -98,6 +99,8 @@ class PaslonController extends Controller
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'pengalaman_organisasi' => $request->pengalaman_organisasi,
             'keterangan_tambahan' => $request->keterangan_tambahan,
+            'provinsi' => $request->provinsi,
+            'kabkota' => $request->kabkota,
             'foto' => $imagePath,
             'visi_misi' => $request->visi_misi,
             'status' => 1
@@ -145,6 +148,8 @@ class PaslonController extends Controller
             'pengalaman_organisasi' => $request->pengalaman_organisasi,
             'keterangan_tambahan' => $request->keterangan_tambahan,
             'visi_misi' => $request->visi_misi,
+            'provinsi' => $request->provinsi,
+            'kabkota' => $request->kabkota,
         ]);
 
         return redirect()->route('calon.index')->with('success', 'Berhasil memperbarui data user');

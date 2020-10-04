@@ -23,6 +23,20 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Provinsi</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="provinsi" class="form-control" value="{{$user->provinsi}}" placeholder="Provinsi" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Kabupaten/Kota</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="kabkota" class="form-control" value="{{$user->kabkota}}" placeholder="Kabupaten/Kota" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No Urut Calon</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" value="{{$user->no_urut_calon + 1}}" placeholder="No Urut Calon" required readonly>
@@ -49,7 +63,7 @@
                         <input type="text" name="tempat_lahir" class="form-control" value="{{$user->tempat_lahir}}" placeholder="Tempat Lahir" required>
                     </div>
                     <div class="col-sm-4">
-                        <input type="date" name="tanggal_lahir" class="form-control" value="" placeholder="yyyy-mm-dd" required>
+                        <input type="date" name="tanggal_lahir" class="form-control" value="{{$user->tanggal_lahir}}" placeholder="yyyy-mm-dd" required>
                     </div>
                 </div>
 

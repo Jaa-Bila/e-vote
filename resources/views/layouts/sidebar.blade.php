@@ -20,7 +20,7 @@
                 @if(auth()->user()->vote == null)
                     <li class="nav-item">
                         <a href="{{route('pemilih.vote_page')}}" class="nav-link">
-                            <button class="btn btn-success">
+                            <button class="btn btn-success" style="width: 100%">
                                 <i class="nav-icon fa fa-vote-yea"></i>
                                 <p>Pilih Kades</p>
                             </button>
