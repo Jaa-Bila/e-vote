@@ -125,7 +125,7 @@ class PengawasController extends Controller
 
         $user->update([
             'name' => $request->name,
-            'no_urut' => $request->no_urut,
+            'no_urut' => $user->no_urut,
             'nik' => $request->nik,
             'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,

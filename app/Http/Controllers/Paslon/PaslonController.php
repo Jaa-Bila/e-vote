@@ -134,8 +134,8 @@ class PaslonController extends Controller
         $user->update([
             'name' => $request->name,
             'nik' => $request->nik,
-            'no_urut_calon' => $request->no_urut_calon,
-            'no_urut' => $request->no_urut,
+            'no_urut_calon' => $user->no_urut_calon,
+            'no_urut' => $user->no_urut,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
