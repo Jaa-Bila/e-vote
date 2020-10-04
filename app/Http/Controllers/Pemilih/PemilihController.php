@@ -128,6 +128,7 @@ class PemilihController extends Controller
         $user->update([
             'name' => $request->name,
             'no_urut' => $request->no_urut,
+            'no_urut_calon' => $request->no_urut_calon,
             'nik' => $request->nik,
             'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,
