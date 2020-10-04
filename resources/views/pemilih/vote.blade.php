@@ -17,7 +17,7 @@
                     <div class="card-footer">
                         <div class="row" style="height: 300px">
                             <div class="col-12 text-center">
-                                <h6 class="text-bold">Visi Misi:</h6>
+                                <h6 class="text-bold m-4">Visi Misi:</h6>
                                 <p style="max-height: 200px;overflow-y: scroll;margin-top:4px">{{$data->visi_misi}}</p>
                                 <button type="button" onclick="takeAPhoto({{$data->id}})" class="btn btn-success" style="width: 200px;" data-toggle="modal" data-target="#modal-lg" data-backdrop="static" data-keyboard="false">Pilih!</button>
                             </div>
