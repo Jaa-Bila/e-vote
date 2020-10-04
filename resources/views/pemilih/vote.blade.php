@@ -12,7 +12,7 @@
                         <h3 class="widget-user-username text-center">{{$data->name}}</h3>
                     </div>
                     <div class="widget-user-image">
-                        <img class="img-circle elevation-2" src="{{asset($data->foto)}}" alt="User Avatar">
+                        <img class="rounded-circle elevation-2" src="{{asset($data->foto)}}" alt="User Avatar">
                     </div>
                     <div class="card-footer">
                         <div class="row" style="height: 300px">
