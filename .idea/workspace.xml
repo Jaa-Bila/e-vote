@@ -23,10 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebe7a381-19f9-4434-bd71-1e60efe88281" name="Default Changelist" comment="Update Margin on visi misi">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pemilih/PemilihController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pemilih/PemilihController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -196,7 +192,7 @@
       <workItem from="1601642181504" duration="126000" />
       <workItem from="1601642316675" duration="3327000" />
       <workItem from="1601814819225" duration="967000" />
-      <workItem from="1601815883521" duration="1136000" />
+      <workItem from="1601815883521" duration="1218000" />
     </task>
     <task id="LOCAL-00001" summary="Update Margin on visi misi">
       <created>1601816140759</created>
