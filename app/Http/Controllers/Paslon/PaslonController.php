@@ -26,6 +26,9 @@ class PaslonController extends Controller
                     $url = asset($row->foto);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
+                ->addColumn('ttl', function($row){
+                    return $row->tempat_lahir . ', ' . $row->tanggal_lahir;
+                })
                 ->addColumn('action', function($row) {
                     $urlEdit = route('admin.edit', $row->id);
                     $urlApprove = route('admin.approve', $row->id);
