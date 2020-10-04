@@ -40,7 +40,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No Urut Calon</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" value="{{$user->no_urut_calon + 1}}" placeholder="No Urut Calon" required readonly>
+                        <input type="text" class="form-control" value="{{$user->no_urut_calon}}" placeholder="No Urut Calon" required readonly>
                     </div>
                 </div>
 
