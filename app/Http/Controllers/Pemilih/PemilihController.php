@@ -29,9 +29,19 @@ class PemilihController extends Controller
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
                 ->addColumn('action', function($row) {
-                    $urlEdit = route('pemilih.edit', $row->id);
-                    $urlDelete = route('pemilih.destroy', $row->id);
-                    $button =
+                    $urlEdit = route('admin.edit', $row->id);
+                    $urlApprove = route('admin.approve', $row->id);
+                    $urlDelete = route('admin.destroy', $row->id);
+                    $button = '';
+                    if($row->status === 0){
+                        $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .
+                            csrf_field()  .
+                            '<button class="btn btn-info" type="submit" onclick="return confirm(' .
+                            "'Are you want to approve $row->name ?')" .
+                            '" href="' .  $urlApprove  . '">Approve</button>' .
+                            '</form>';
+                    }
+                    $button = $button .
                         '<form action="' .  $urlDelete  . '" method="post">' .
                         '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         csrf_field()  . method_field("DELETE")  .
@@ -52,6 +62,13 @@ class PemilihController extends Controller
     {
         $user = User::latest()->first();
         return view('pemilih.create', ['user' => $user]);
+    }
+
+    public function approve(User $user)
+    {
+        $user->status = 1;
+        $user->save();
+        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
     }
 
     public function store(Request $request)

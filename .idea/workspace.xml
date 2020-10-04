@@ -24,22 +24,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ebe7a381-19f9-4434-bd71-1e60efe88281" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pemilih/PemilihController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pemilih/PemilihController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckRoles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckRoles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pemilih/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pemilih/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pemilih/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pemilih/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/paslon/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/paslon/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pemilih/vote.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pemilih/vote.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,6 +198,7 @@
       <workItem from="1601587574202" duration="2221000" />
       <workItem from="1601642181504" duration="126000" />
       <workItem from="1601642316675" duration="3327000" />
+      <workItem from="1601814819225" duration="700000" />
     </task>
     <servers />
   </component>

@@ -29,6 +29,8 @@
                     </div>
                 </div>
 
+                <input type="hidden" name="no_urut" value="{{$user->no_urut + 1}}">
+
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama Calon Kepala Desa</label>
                     <div class="col-sm-10">
@@ -105,6 +107,13 @@
                     <label class="col-sm-2 col-form-label">Keterangan Tambahan</label>
                     <div class="col-sm-10">
                         <textarea name="keterangan_tambahan" class="form-control" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Visi Misi</label>
+                    <div class="col-sm-10">
+                        <textarea name="visi_misi" class="form-control" required></textarea>
                     </div>
                 </div>
 

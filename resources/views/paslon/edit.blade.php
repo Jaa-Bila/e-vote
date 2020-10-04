@@ -26,9 +26,11 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No Urut Calon</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" value="{{$user->no_urut_calon}}" placeholder="No Urut Calon" required readonly>
+                        <input type="text" name="no_urut_calon" class="form-control" value="{{$user->no_urut_calon}}" placeholder="No Urut Calon" required readonly>
                     </div>
                 </div>
+
+                <input type="hidden" name="no_urut" value="{{$user->no_urut}}">
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama Calon Kepala Desa</label>
@@ -106,6 +108,13 @@
                     <label class="col-sm-2 col-form-label">Keterangan Tambahan</label>
                     <div class="col-sm-10">
                         <textarea name="keterangan_tambahan" class="form-control" required>{{$user->keterangan_tambahan}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Visi Misi</label>
+                    <div class="col-sm-10">
+                        <textarea name="visi_misi" class="form-control" required>{{$user->visi_misi}}</textarea>
                     </div>
                 </div>
 
