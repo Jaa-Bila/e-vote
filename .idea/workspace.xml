@@ -23,7 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebe7a381-19f9-4434-bd71-1e60efe88281" name="Default Changelist" comment="Update Margin on visi misi">
-      <change beforePath="$PROJECT_DIR$/resources/views/paslon/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paslon/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/public/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/public/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +194,8 @@
       <workItem from="1601642181504" duration="126000" />
       <workItem from="1601642316675" duration="3327000" />
       <workItem from="1601814819225" duration="967000" />
-      <workItem from="1601815883521" duration="4111000" />
+      <workItem from="1601815883521" duration="4561000" />
+      <workItem from="1601903668948" duration="550000" />
     </task>
     <task id="LOCAL-00001" summary="Update Margin on visi misi">
       <created>1601816140759</created>
