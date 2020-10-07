@@ -28,9 +28,18 @@ class PengawasController extends Controller
                 })
                 ->addColumn('action', function($row) {
                     $urlEdit = route('pengawas.edit', $row->id);
+                    $urlApprove = route('pengawas.approve', $row->id);
                     $urlDelete = route('pengawas.destroy', $row->id);
-
-                    $button =
+                    $button = '';
+                    if($row->status === 0){
+                        $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .
+                            csrf_field()  .
+                            '<button class="btn btn-info" type="submit" onclick="return confirm(' .
+                            "'Are you want to approve $row->name ?')" .
+                            '" href="' .  $urlApprove  . '">Approve</button>' .
+                            '</form>';
+                    }
+                    $button = $button .
                         '<form action="' .  $urlDelete  . '" method="post">' .
                         '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         csrf_field()  . method_field("DELETE")  .
@@ -53,8 +62,16 @@ class PengawasController extends Controller
         return view('pengawas.create', ['user' => $user]);
     }
 
+    public function approve(User $user)
+    {
+        $user->status = 1;
+        $user->save();
+        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
+    }
+
     public function store(Request $request)
     {
+        $latestUser = User::latest()->first();
         $image = $request->file('image');
         $ext = $image->getClientOriginalExtension();
         $imagename = Carbon::now()->format('dmYHis') . '.' . $ext;
@@ -64,7 +81,7 @@ class PengawasController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'no_urut' => $request->no_urut,
+            'no_urut' => $latestUser->no_urut + 1,
             'nik' => $request->nik,
             'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,
@@ -108,7 +125,7 @@ class PengawasController extends Controller
 
         $user->update([
             'name' => $request->name,
-            'no_urut' => $request->no_urut,
+            'no_urut' => $user->no_urut,
             'nik' => $request->nik,
             'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,

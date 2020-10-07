@@ -21,7 +21,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No Urut Pemilih</label>
                     <div class="col-sm-10">
-                        <input type="text" name="no_urut" class="form-control" value="{{$user->no_urut}}" placeholder="No Urut" required readonly>
+                        <input type="text" class="form-control" value="{{$user->no_urut}}" placeholder="No Urut" required readonly>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
-                        <input id="upload_image" type="file" name="image" class="form-control" required accept="image/x-png,image/gif,image/jpeg">
+                        <input id="upload_image" type="file" name="image" class="form-control" accept="image/x-png,image/gif,image/jpeg">
                     </div>
                 </div>
 

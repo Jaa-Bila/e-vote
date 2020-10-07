@@ -26,14 +26,23 @@ class PaslonController extends Controller
                     $url = asset($row->foto);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
-                ->addColumn('ttl', function ($row){
+                ->addColumn('ttl', function($row){
                     return $row->tempat_lahir . ', ' . $row->tanggal_lahir;
                 })
                 ->addColumn('action', function($row) {
                     $urlEdit = route('calon.edit', $row->id);
+                    $urlApprove = route('calon.approve', $row->id);
                     $urlDelete = route('calon.destroy', $row->id);
-
-                    $button =
+                    $button = '';
+                    if($row->status === 0){
+                        $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .
+                            csrf_field()  .
+                            '<button class="btn btn-info" type="submit" onclick="return confirm(' .
+                            "'Are you want to approve $row->name ?')" .
+                            '" href="' .  $urlApprove  . '">Approve</button>' .
+                            '</form>';
+                    }
+                    $button = $button .
                         '<form action="' .  $urlDelete  . '" method="post">' .
                         '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         csrf_field()  . method_field("DELETE")  .
@@ -50,6 +59,13 @@ class PaslonController extends Controller
         return view('paslon.index');
     }
 
+    public function approve(User $user)
+    {
+        $user->status = 1;
+        $user->save();
+        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
+    }
+
     public function create()
     {
         $user = User::latest()->first();
@@ -58,6 +74,7 @@ class PaslonController extends Controller
 
     public function store(Request $request)
     {
+        $latestUser = User::latest()->first();
         $image = $request->file('image');
         $ext = $image->getClientOriginalExtension();
         $imagename = Carbon::now()->format('dmYHis') . '.' . $ext;
@@ -67,8 +84,10 @@ class PaslonController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'no_urut_calon' => $request->no_urut_calon,
+            'no_urut_calon' => $latestUser->no_urut_calon + 1,
+            'no_urut' => $latestUser->no_urut + 1,
             'nik' => $request->nik,
+            'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -80,7 +99,10 @@ class PaslonController extends Controller
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'pengalaman_organisasi' => $request->pengalaman_organisasi,
             'keterangan_tambahan' => $request->keterangan_tambahan,
+            'provinsi' => $request->provinsi,
+            'kabkota' => $request->kabkota,
             'foto' => $imagePath,
+            'visi_misi' => $request->visi_misi,
             'status' => 1
         ]);
 
@@ -112,6 +134,8 @@ class PaslonController extends Controller
         $user->update([
             'name' => $request->name,
             'nik' => $request->nik,
+            'no_urut_calon' => $user->no_urut_calon,
+            'no_urut' => $user->no_urut,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -122,7 +146,10 @@ class PaslonController extends Controller
             'desa_kelurahan' => $request->desa_kelurahan,
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'pengalaman_organisasi' => $request->pengalaman_organisasi,
-            'keterangan_tambahan' => $request->keterangan_tambahan
+            'keterangan_tambahan' => $request->keterangan_tambahan,
+            'visi_misi' => $request->visi_misi,
+            'provinsi' => $request->provinsi,
+            'kabkota' => $request->kabkota,
         ]);
 
         return redirect()->route('calon.index')->with('success', 'Berhasil memperbarui data user');

@@ -52,6 +52,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
         Route::get('/', [PengawasController::class, 'index'])->name('pengawas.index');
         Route::get('/create', [PengawasController::class, 'create'])->name('pengawas.create');
         Route::get('/{user}', [PengawasController::class, 'edit'])->name('pengawas.edit');
+        Route::post('/approve/{user}', [PengawasController::class, 'approve'])->name('pengawas.approve');
         Route::post('/', [PengawasController::class, 'store'])->name('pengawas.store');
         Route::put('/{user}', [PengawasController::class, 'update'])->name('pengawas.update');
         Route::delete('/{user}', [PengawasController::class, 'destroy'])->name('pengawas.destroy');
@@ -61,6 +62,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
         Route::get('/', [PaslonController::class, 'index'])->name('calon.index');
         Route::get('/create', [PaslonController::class, 'create'])->name('calon.create');
         Route::get('/{user}', [PaslonController::class, 'edit'])->name('calon.edit');
+        Route::post('/approve/{user}', [PaslonController::class, 'approve'])->name('calon.approve');
         Route::post('/', [PaslonController::class, 'store'])->name('calon.store');
         Route::put('/{user}', [PaslonController::class, 'update'])->name('calon.update');
         Route::delete('/{user}', [PaslonController::class, 'destroy'])->name('calon.destroy');
@@ -70,6 +72,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
         Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
         Route::get('/create', [PemilihController::class, 'create'])->name('pemilih.create');
         Route::get('/{user}', [PemilihController::class, 'edit'])->name('pemilih.edit');
+        Route::post('/approve/{user}', [PemilihController::class, 'approve'])->name('pemilih.approve');
         Route::post('/', [PemilihController::class, 'store'])->name('pemilih.store');
         Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
         Route::delete('/{user}', [PemilihController::class, 'destroy'])->name('pemilih.destroy');

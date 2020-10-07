@@ -23,9 +23,23 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Provinsi</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="provinsi" class="form-control" value="" placeholder="Provinsi" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Kabupaten/Kota</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="kabkota" class="form-control" value="" placeholder="Kabupaten/Kota" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No Urut Calon</label>
                     <div class="col-sm-10">
-                        <input type="text" name="no_urut_calon" class="form-control" value="{{$user->no_urut_calon + 1}}" placeholder="No Urut Calon" required readonly>
+                        <input type="text" class="form-control" value="{{$user->no_urut_calon + 1}}" placeholder="No Urut Calon" required readonly>
                     </div>
                 </div>
 
@@ -33,6 +47,13 @@
                     <label class="col-sm-2 col-form-label">Nama Calon Kepala Desa</label>
                     <div class="col-sm-10">
                         <input type="text" name="name" class="form-control" value="" placeholder="Nama Lengkap" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">No ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="no_ktp" class="form-control" value="" placeholder="ID" required>
                     </div>
                 </div>
 
@@ -105,6 +126,13 @@
                     <label class="col-sm-2 col-form-label">Keterangan Tambahan</label>
                     <div class="col-sm-10">
                         <textarea name="keterangan_tambahan" class="form-control" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Visi Misi</label>
+                    <div class="col-sm-10">
+                        <textarea name="visi_misi" class="form-control" required></textarea>
                     </div>
                 </div>
 

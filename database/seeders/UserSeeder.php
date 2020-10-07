@@ -35,8 +35,10 @@ class UserSeeder extends Seeder
             'pendidikan_terakhir' => 'S1',
             'pengalaman_organisasi' => 'Tidak ada',
             'keterangan_tambahan' => null,
-            'foto' => null,
+            'foto' => 'storage/image/user.jpg',
             'status' => 1
         ]);
+
+
     }
 }

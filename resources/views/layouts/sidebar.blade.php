@@ -17,6 +17,17 @@
         </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @if(auth()->user()->vote == null)
+                    <li class="nav-item">
+                        <a href="{{route('pemilih.vote_page')}}" class="nav-link">
+                            <button class="btn btn-success" style="width: 100%">
+                                <i class="nav-icon fa fa-vote-yea"></i>
+                                <p>Pilih Kades</p>
+                            </button>
+
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-header">Menu Utama</li>
                 @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
                 <li class="nav-item">
@@ -111,14 +122,6 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-cogs"></i>
                         <p>Pengaturan Web</p>
-                    </a>
-                </li>
-                @endif
-                @if(auth()->user()->vote == null)
-                <li class="nav-item">
-                    <a href="{{route('pemilih.vote_page')}}" class="nav-link">
-                        <i class="nav-icon fa fa-vote-yea"></i>
-                        <p>Pilih Kades</p>
                     </a>
                 </li>
                 @endif

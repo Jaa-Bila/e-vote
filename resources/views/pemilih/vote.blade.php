@@ -11,14 +11,14 @@
                     <div class="widget-user-header bg-info">
                         <h3 class="widget-user-username text-center">{{$data->name}}</h3>
                     </div>
-                    <div class="widget-user-image">
-                        <img class="img-circle elevation-2" src="{{asset($data->foto)}}" alt="User Avatar">
+                    <div class="widget-user-image text-center">
+                        <img class="mt-3 rounded-circle elevation-2" style="width: 100px; height: 100px" src="{{asset($data->foto)}}" alt="User Avatar">
                     </div>
                     <div class="card-footer">
                         <div class="row" style="height: 300px">
                             <div class="col-12 text-center">
-                                <h6 class="text-bold">Visi Misi:</h6>
-                                <p style="max-height: 200px;overflow-y: scroll;margin-top:4px">{{$data->keterangan_tambahan}}</p>
+                                <h6 class="text-bold mt-5" >Visi Misi:</h6>
+                                <p style="max-height: 200px;overflow-y: scroll;margin-top:4px">{{$data->visi_misi}}</p>
                                 <button type="button" onclick="takeAPhoto({{$data->id}})" class="btn btn-success" style="width: 200px;" data-toggle="modal" data-target="#modal-lg" data-backdrop="static" data-keyboard="false">Pilih!</button>
                             </div>
                         </div>

@@ -24,6 +24,20 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Provinsi</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="provinsi" class="form-control" value="{{$user->provinsi}}" placeholder="Provinsi" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Kabupaten/Kota</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="kabkota" class="form-control" value="{{$user->kabkota}}" placeholder="Kabupaten/Kota" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No Urut Calon</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" value="{{$user->no_urut_calon}}" placeholder="No Urut Calon" required readonly>
@@ -34,6 +48,13 @@
                     <label class="col-sm-2 col-form-label">Nama Calon Kepala Desa</label>
                     <div class="col-sm-10">
                         <input type="text" name="name" class="form-control" value="{{$user->name}}" placeholder="Nama Lengkap" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">No ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="no_ktp" class="form-control" value="{{$user->no_ktp}}" placeholder="ID" required>
                     </div>
                 </div>
 
@@ -50,7 +71,7 @@
                         <input type="text" name="tempat_lahir" class="form-control" value="{{$user->tempat_lahir}}" placeholder="Tempat Lahir" required>
                     </div>
                     <div class="col-sm-4">
-                        <input type="date" name="tanggal_lahir" class="form-control" value="" placeholder="yyyy-mm-dd" required>
+                        <input type="date" name="tanggal_lahir" class="form-control" value="{{$user->tanggal_lahir}}" placeholder="yyyy-mm-dd" required>
                     </div>
                 </div>
 
@@ -110,9 +131,16 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Visi Misi</label>
+                    <div class="col-sm-10">
+                        <textarea name="visi_misi" class="form-control" required>{{$user->visi_misi}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
-                        <input id="upload_image" type="file" name="image" class="form-control" required accept="image/x-png,image/gif,image/jpeg">
+                        <input id="upload_image" type="file" name="image" class="form-control" accept="image/x-png,image/gif,image/jpeg">
                     </div>
                 </div>
 
