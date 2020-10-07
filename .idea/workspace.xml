@@ -23,23 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebe7a381-19f9-4434-bd71-1e60efe88281" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Paslon/PaslonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pemilih/PemilihController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pemilih/PemilihController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pengawas/PengawasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckRoles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckRoles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pemilih/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pemilih/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pemilih/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pemilih/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pengawas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengawas/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +150,7 @@
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hjbYzSlXYIT1PHGOwMDtnmF6Kj" />
@@ -176,6 +162,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -183,8 +170,13 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Laravel\evote" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -207,6 +199,9 @@
       <workItem from="1601587574202" duration="2221000" />
       <workItem from="1601642181504" duration="126000" />
       <workItem from="1601642316675" duration="3327000" />
+      <workItem from="1601890690517" duration="227000" />
+      <workItem from="1601890927388" duration="77000" />
+      <workItem from="1601891472553" duration="11000" />
     </task>
     <servers />
   </component>
@@ -234,6 +229,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601643354005" />
+    <state x="640" y="225" key="FileChooserDialogImpl" timestamp="1601890991813">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="640" y="225" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601890991813" />
     <state x="794" y="439" key="NewPhpFileDialog" timestamp="1601655406906">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -242,9 +241,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="813" y="139" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601588190179" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1601642307625">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="369" y="115" key="SettingsEditor" timestamp="1601890998664">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="369" y="115" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601890998664" />
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601642307625" />
     <state x="777" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601112139989">
       <screen x="0" y="0" width="1920" height="1040" />
