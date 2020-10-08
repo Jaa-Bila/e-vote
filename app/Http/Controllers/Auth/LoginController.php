@@ -59,12 +59,11 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         $user = User::where('no_ktp', $request->no_ktp)->first();
-        if(is_null($user))
-        {
+        if (is_null($user)) {
             return $this->sendFailedLoginResponse($request);
         }
 
-        if($user->status === 0){
+        if ($user->status === 0) {
             throw ValidationException::withMessages([
                 $this->username() => [trans('auth.not_active')],
             ]);
@@ -72,7 +71,7 @@ class LoginController extends Controller
 
         auth()->loginUsingId($user->id);
         $roles = [];
-        foreach(auth()->user()->roles as $role){
+        foreach (auth()->user()->roles as $role) {
             array_push($roles, $role->role_name);
         }
         Session::put('user_roles', $roles);
@@ -82,5 +81,25 @@ class LoginController extends Controller
     public function username()
     {
         return 'no_ktp';
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+
+        $roles = Session::get('user_roles');
+        if (in_array('PASLON', $roles) || count($roles) === 1) {
+            $this->redirectTo = route('pemilih.vote_page');
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect()->intended($this->redirectTo);
     }
 }
