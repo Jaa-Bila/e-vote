@@ -19,7 +19,9 @@
                         <th>L/P</th>
                         <th>NIK</th>
                         <th>Pekerjaan</th>
-                        <th>Foto</th>
+                        <th>Foto Selfie</th>
+                        <th>Foto Asli</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -47,7 +49,9 @@
                     {data: 'jenis_kelamin', name: 'jenis_kelamin'},
                     {data: 'nik', name: 'nik'},
                     {data: 'pekerjaan', name: 'pekerjaan'},
-                    {data: 'image', name: 'image'},
+                    {data: 'image', name: 'image', orderable: false, searchable: false},
+                    {data: 'real_image', name: 'real_image', orderable: false, searchable: false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });
         });

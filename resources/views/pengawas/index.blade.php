@@ -48,12 +48,12 @@
                 render: 'image',
                 columns: [
                     {data: 'name', name: 'name'},
-                    {data: 'id', name: 'id'},
+                    {data: 'no_ktp', name: 'no_ktp'},
                     {data: 'name', name: 'name'},
                     {data: 'jenis_kelamin', name: 'jenis_kelamin'},
                     {data: 'nik', name: 'nik'},
                     {data: 'pekerjaan', name: 'pekerjaan'},
-                    {data: 'image', name: 'image'},
+                    {data: 'image', name: 'image', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });

@@ -47,7 +47,7 @@
                     {data: 'jenis_kelamin', name: 'jenis_kelamin'},
                     {data: 'nik', name: 'nik'},
                     {data: 'pekerjaan', name: 'pekerjaan'},
-                    {data: 'image', name: 'image'},
+                    {data: 'image', name: 'image', orderable: false, searchable: false},
                 ]
             });
         });

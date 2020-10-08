@@ -32,6 +32,7 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
     Route::prefix('/pemilih')->group(function(){
+        Route::post('/confirm/{id}', [PemilihController::class, 'confirm'])->name('pemilih.confirm');
         Route::get('/user/voted', [PemilihController::class, 'getUserVote'])->name('pemilih.voted');
         Route::get('/user/not-voted', [PemilihController::class, 'getUserNotVote'])->name('pemilih.not_voted');
     });
@@ -40,9 +41,10 @@ Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
 Route::middleware(['auth', 'role:ADMIN'])->group(function() {
     Route::prefix('/admin')->group(function(){
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('{user}/show', [AdminController::class, 'show'])->name('admin.show');
         Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
         Route::get('/{user}', [AdminController::class, 'edit'])->name('admin.edit');
-        Route::post('/approve/{user}', [AdminController::class, 'approve'])->name('admin.approve');
+        Route::post('/activate/{user}', [AdminController::class, 'activate'])->name('admin.activate');
         Route::post('/', [AdminController::class, 'store'])->name('admin.store');
         Route::put('/{user}', [AdminController::class, 'update'])->name('admin.update');
         Route::delete('/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
@@ -50,9 +52,10 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
 
     Route::prefix('/pengawas')->group(function(){
         Route::get('/', [PengawasController::class, 'index'])->name('pengawas.index');
+        Route::get('{user}/show', [PengawasController::class, 'show'])->name('pengawas.show');
         Route::get('/create', [PengawasController::class, 'create'])->name('pengawas.create');
         Route::get('/{user}', [PengawasController::class, 'edit'])->name('pengawas.edit');
-        Route::post('/approve/{user}', [PengawasController::class, 'approve'])->name('pengawas.approve');
+        Route::post('/activate/{user}', [PengawasController::class, 'activate'])->name('pengawas.activate');
         Route::post('/', [PengawasController::class, 'store'])->name('pengawas.store');
         Route::put('/{user}', [PengawasController::class, 'update'])->name('pengawas.update');
         Route::delete('/{user}', [PengawasController::class, 'destroy'])->name('pengawas.destroy');
@@ -60,9 +63,10 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
 
     Route::prefix('/calon')->group(function(){
         Route::get('/', [PaslonController::class, 'index'])->name('calon.index');
+        Route::get('{user}/show', [PaslonController::class, 'show'])->name('calon.show');
         Route::get('/create', [PaslonController::class, 'create'])->name('calon.create');
         Route::get('/{user}', [PaslonController::class, 'edit'])->name('calon.edit');
-        Route::post('/approve/{user}', [PaslonController::class, 'approve'])->name('calon.approve');
+        Route::post('/activate/{user}', [PaslonController::class, 'activate'])->name('calon.activate');
         Route::post('/', [PaslonController::class, 'store'])->name('calon.store');
         Route::put('/{user}', [PaslonController::class, 'update'])->name('calon.update');
         Route::delete('/{user}', [PaslonController::class, 'destroy'])->name('calon.destroy');
@@ -70,12 +74,21 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
 
     Route::prefix('/pemilih')->group(function(){
         Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
+        Route::get('{user}/show', [PemilihController::class, 'show'])->name('pemilih.show');
         Route::get('/create', [PemilihController::class, 'create'])->name('pemilih.create');
         Route::get('/{user}', [PemilihController::class, 'edit'])->name('pemilih.edit');
-        Route::post('/approve/{user}', [PemilihController::class, 'approve'])->name('pemilih.approve');
+        Route::post('/activate/{user}', [PemilihController::class, 'activate'])->name('pemilih.activate');
         Route::post('/', [PemilihController::class, 'store'])->name('pemilih.store');
         Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
         Route::delete('/{user}', [PemilihController::class, 'destroy'])->name('pemilih.destroy');
+    });
+});
+
+Route::middleware(['auth', 'role:PASLON'])->group(function(){
+    Route::prefix('/calon')->group(function(){
+        Route::get('/', [PaslonController::class, 'index'])->name('calon.index');
+        Route::get('/{user}', [PaslonController::class, 'edit'])->name('calon.edit');
+        Route::put('/{user}', [PaslonController::class, 'update'])->name('calon.update');
     });
 });
 

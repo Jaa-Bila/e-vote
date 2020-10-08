@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -19,6 +20,14 @@ class PaslonController extends Controller
             ->select('users.*')
             ->where('user_role.role_id', 3)->get();
 
+        if(in_array('PASLON', Session::get('user_roles'))){
+            $data = DB::table('users')
+            ->join('user_role', 'users.id', '=', 'user_role.user_id')
+            ->select('users.*')
+            ->where(['user_role.role_id' => 3, 'users.id' => auth()->user()->id])->get();
+        }
+        
+
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -30,26 +39,32 @@ class PaslonController extends Controller
                     return $row->tempat_lahir . ', ' . $row->tanggal_lahir;
                 })
                 ->addColumn('action', function($row) {
+                    $urlShow = route('calon.show', $row->id);
                     $urlEdit = route('calon.edit', $row->id);
-                    $urlApprove = route('calon.approve', $row->id);
+                    $urlActivate = route('calon.activate', $row->id);
                     $urlDelete = route('calon.destroy', $row->id);
                     $button = '';
                     if($row->status === 0){
-                        $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .
+                        $button = $button . '<form action="' .  $urlActivate  . '" method="post">' .
                             csrf_field()  .
                             '<button class="btn btn-info" type="submit" onclick="return confirm(' .
-                            "'Are you want to approve $row->name ?')" .
-                            '" href="' .  $urlApprove  . '">Approve</button>' .
+                            "'Are you want to activate $row->name ?')" .
+                            '" href="' .  $urlActivate  . '">Activate</button>' .
                             '</form>';
                     }
-                    $button = $button .
+                    $button = $button . '<a href="' . $urlShow . '" class=" btn btn-info" style="margin-right: 10px">Show</a>'.
+                    '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>';
+
+                    if(in_array('ADMIN', Session::get('user_roles'))){
+                        $button = $button .
                         '<form action="' .  $urlDelete  . '" method="post">' .
-                        '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         csrf_field()  . method_field("DELETE")  .
                         '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
                         "'Are you sure delete $row->name ?')" .
                         '" href="' .  $urlDelete  . '">Delete</button>' .
-                        '</form>';
+                        '</form>';  
+                    }
+                    
                     return $button;
                 })
                 ->rawColumns(['image', 'action'])
@@ -59,22 +74,36 @@ class PaslonController extends Controller
         return view('paslon.index');
     }
 
-    public function approve(User $user)
+    public function activate(User $user)
     {
         $user->status = 1;
         $user->save();
         return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
     }
 
+    public function show(User $user){
+        return view('paslon.show', ['user' => $user]);
+    }
+
     public function create()
     {
-        $user = User::latest()->first();
-        return view('paslon.create', ['user' => $user]);
+        $user = User::join('user_role', 'users.id', '=', 'user_role.user_id')
+                ->where('user_role.role_id', 3)
+                ->select('users.*')
+                ->latest()
+                ->first();
+        $noUrutCalon = isset($user->no_urut_calon) ? $user->no_urut_calon : 0;
+        return view('paslon.create', ['noUrutCalon' => $noUrutCalon]);
     }
 
     public function store(Request $request)
     {
-        $latestUser = User::latest()->first();
+        $latestUser = User::join('user_role', 'users.id', '=', 'user_role.user_id')
+                    ->where('user_role.role_id', 3)
+                    ->select('users.*')
+                    ->latest()
+                    ->first();
+        $latestNomorUrut = User::latest()->first();
         $image = $request->file('image');
         $ext = $image->getClientOriginalExtension();
         $imagename = Carbon::now()->format('dmYHis') . '.' . $ext;
@@ -84,8 +113,8 @@ class PaslonController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'no_urut_calon' => $latestUser->no_urut_calon + 1,
-            'no_urut' => $latestUser->no_urut + 1,
+            'no_urut_calon' => isset($latestUser->no_urut_calon) ? $latestUser->no_urut_calon + 1 : 1,
+            'no_urut' => $latestNomorUrut->no_urut + 1,
             'nik' => $request->nik,
             'no_ktp' => $request->no_ktp,
             'tempat_lahir' => $request->tempat_lahir,

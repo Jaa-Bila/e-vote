@@ -10,8 +10,9 @@
 @section('content')
     <div class="card card-primary">
         <div class="card-body" style="display: block;">
-            <a href="{{route('calon.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan Calon</button></a>
-
+            @if(in_array('ADMIN', Session::get('user_roles')))
+                <a href="{{route('calon.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan Calon</button></a>
+            @endif
             @include('message_info')
             <div class="mt-3">
                 <table class="data-table display nowrap" style="width:100%">
@@ -57,7 +58,7 @@
                     {data: 'pendidikan_terakhir', name: 'pendidikan_terakhir'},
                     {data: 'pekerjaan', name: 'pekerjaan'},
                     {data: 'desa_kelurahan', name: 'desa_kelurahan'},
-                    {data: 'image', name: 'image'},
+                    {data: 'image', name: 'image', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });

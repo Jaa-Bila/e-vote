@@ -27,20 +27,22 @@ class PengawasController extends Controller
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
                 ->addColumn('action', function($row) {
+                    $urlShow = route('pengawas.show', $row->id);
                     $urlEdit = route('pengawas.edit', $row->id);
-                    $urlApprove = route('pengawas.approve', $row->id);
+                    $urlActivate = route('pengawas.activate', $row->id);
                     $urlDelete = route('pengawas.destroy', $row->id);
                     $button = '';
                     if($row->status === 0){
-                        $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .
+                        $button = $button . '<form action="' .  $urlActivate  . '" method="post">' .
                             csrf_field()  .
                             '<button class="btn btn-info" type="submit" onclick="return confirm(' .
-                            "'Are you want to approve $row->name ?')" .
-                            '" href="' .  $urlApprove  . '">Approve</button>' .
+                            "'Are you want to activate $row->name ?')" .
+                            '" href="' .  $urlActivate  . '">Activate</button>' .
                             '</form>';
                     }
                     $button = $button .
                         '<form action="' .  $urlDelete  . '" method="post">' .
+                        '<a href="' . $urlShow . '" class=" btn btn-info" style="margin-right: 10px">Show</a>' .
                         '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         csrf_field()  . method_field("DELETE")  .
                         '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
@@ -56,13 +58,17 @@ class PengawasController extends Controller
         return view('pengawas.index');
     }
 
+    public function show(User $user){
+        return view('pengawas.show', ['user' => $user]);
+    }
+
     public function create()
     {
         $user = User::latest()->first();
         return view('pengawas.create', ['user' => $user]);
     }
 
-    public function approve(User $user)
+    public function activate(User $user)
     {
         $user->status = 1;
         $user->save();

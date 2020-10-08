@@ -29,20 +29,31 @@ class PemilihController extends Controller
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
                 ->addColumn('action', function($row) {
+                    $urlShow = route('pemilih.show', $row->id);
                     $urlEdit = route('pemilih.edit', $row->id);
-                    $urlApprove = route('pemilih.approve', $row->id);
+                    $urlActivate = route('pemilih.activate', $row->id);
+                    $urlConfirm = route('pemilih.confirm', $row->id);
                     $urlDelete = route('pemilih.destroy', $row->id);
                     $button = '';
+                    if(in_array('PENGAWAS', Session::get('user_roles'))){
+                        $button = $button . '<form action="' .  $urlConfirm  . '" method="post">' .
+                        csrf_field()  .
+                        '<button class="btn btn-info" type="submit" onclick="return confirm(' .
+                        "'Are you want to confirm $row->name ?')" .
+                        '" href="' .  $urlConfirm  . '">Confirm</button>' .
+                        '</form>';
+                    }
                     if($row->status === 0){
-                        $button = $button . '<form action="' .  $urlApprove  . '" method="post">' .
+                        $button = $button . '<form action="' .  $urlActivate  . '" method="post">' .
                             csrf_field()  .
-                            '<button class="btn btn-info" type="submit" onclick="return confirm(' .
-                            "'Are you want to approve $row->name ?')" .
-                            '" href="' .  $urlApprove  . '">Approve</button>' .
+                            '<button class="btn btn-warning" type="submit" onclick="return confirm(' .
+                            "'Are you want to activate $row->name ?')" .
+                            '" href="' .  $urlActivate  . '">Activate</button>' .
                             '</form>';
                     }
                     $button = $button .
                         '<form action="' .  $urlDelete  . '" method="post">' .
+                        '<a href="' . $urlShow . '" class=" btn btn-info" style="margin-right: 10px">Show</a>' .
                         '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
                         csrf_field()  . method_field("DELETE")  .
                         '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
@@ -58,17 +69,28 @@ class PemilihController extends Controller
         return view('pemilih.index');
     }
 
+    public function show(User $user){
+        return view('pemilih.show', ['user' => $user]);
+    }
+
     public function create()
     {
         $user = User::latest()->first();
         return view('pemilih.create', ['user' => $user]);
     }
 
-    public function approve(User $user)
+    public function activate(User $user)
     {
         $user->status = 1;
         $user->save();
         return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
+    }
+
+    public function confirm($id){
+        DB::table('user_votes')->where('user_id', $id)->update([
+            'confirmed' => 1
+        ]);
+        return redirect()->back()->with('success', 'Berhasil mengkonfirmasi voting user');
     }
 
     public function store(Request $request)
@@ -157,16 +179,34 @@ class PemilihController extends Controller
     {
         $data = DB::table('users')
                 ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
+                ->select('users.*', 'user_votes.*')
                 ->get();
-
+                
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('action', function($row) {
+                    $urlConfirm = route('pemilih.confirm', $row->user_id);
+                    $button = '';
+                    if((in_array('PENGAWAS', Session::get('user_roles')) && $row->confirmed === 0) || (in_array('ADMIN', Session::get('user_roles'))  && $row->confirmed === 0)){
+                        $button = $button . '<form action="' .  $urlConfirm  . '" method="post">' .
+                        csrf_field()  .
+                        '<button class="btn btn-info" type="submit" onclick="return confirm(' .
+                        "'Are you want to confirm $row->name ?')" .
+                        '" href="' .  $urlConfirm  . '">Confirm</button>' .
+                        '</form>';
+                    }
+                    return $button;
+                })
                 ->editColumn('image', function($row) {
                     $url = asset($row->vote_selfie);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
-                ->rawColumns(['image'])
+                ->editColumn('real_image', function($row){
+                    $url = asset($row->foto);
+                    return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
+                })
+                ->rawColumns(['action', 'image', 'real_image'])
                 ->make(true);
         }
 

@@ -28,16 +28,14 @@
                         </a>
                     </li>
                 @endif
-                @if (in_array('ADMIN', Session::get('user_roles')))
                 <li class="nav-header">Menu Utama</li>
+                @if (in_array('ADMIN', Session::get('user_roles')))
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is("*dashboard") ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                @endif
-                @if (in_array('ADMIN', Session::get('user_roles')))
                 <li class="nav-item">
                     <a href="{{route('admin.index')}}" class="nav-link {{ Request::is("*admin") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
@@ -50,14 +48,18 @@
                         <p>Daftar Pengawas</p>
                     </a>
                 </li>
+                @endif
+                @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PASLON', Session::get('user_roles')))
                 <li class="nav-item">
-                    <a href="{{route('calon.index')}}" class="nav-link">
+                    <a href="{{route('calon.index')}}" class="nav-link" {{ Request::is("*calon") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
                         <p>Daftar Calon</p>
                     </a>
                 </li>
+                @endif
+                @if (in_array('ADMIN', Session::get('user_roles')))
                 <li class="nav-item">
-                    <a href="{{route('pemilih.index')}}" class="nav-link">
+                    <a href="{{route('pemilih.index')}}" class="nav-link"  {{ Request::is("*pemilih") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
                         <p>Daftar Pemilih</p>
                     </a>

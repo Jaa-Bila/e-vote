@@ -19,7 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
-@if(count(Session::get('user_roles')) !== 1 && !in_array('PASLON', Session::get('user_roles')))
+@if(count(Session::get('user_roles')) !== 1)
 <div class="wrapper">
     @include('layouts.header')
     @include('layouts.sidebar')
