@@ -94,7 +94,7 @@ class LoginController extends Controller
         }
 
         $roles = Session::get('user_roles');
-        if (in_array('PASLON', $roles) || count($roles) === 1) {
+        if (count($roles) === 1) {
             $this->redirectTo = route('pemilih.vote_page');
         }
 
