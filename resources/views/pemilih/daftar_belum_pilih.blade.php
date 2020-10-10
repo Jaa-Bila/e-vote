@@ -10,6 +10,7 @@
 @section('content')
     <div class="card card-primary">
         <div class="card-body" style="display: block;">
+            @include('message_info')
             <div class="mt-3">
                 <table class="data-table display nowrap" style="width:100%">
                     <thead>

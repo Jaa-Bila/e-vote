@@ -39,9 +39,7 @@
                     <canvas id="canvas" width="640" height="480"></canvas>
                 </div>
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
 @endsection
 

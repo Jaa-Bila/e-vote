@@ -9,7 +9,8 @@
 
 @section('content')
     <div class="card card-primary">
-        <div class="card-body" style="display: block;">
+        <div class="card-body" style="display: block;"> 
+            @include('message_info')
             <div class="mt-3">
                 <table class="data-table display nowrap" style="width:100%">
                     <thead>
@@ -21,7 +22,7 @@
                         <th>Pekerjaan</th>
                         <th>Foto Selfie</th>
                         <th>Foto Asli</th>
-                        <th>Action</th>
+                        <th>Foto Oleh Pengawas</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,7 +52,7 @@
                     {data: 'pekerjaan', name: 'pekerjaan'},
                     {data: 'image', name: 'image', orderable: false, searchable: false},
                     {data: 'real_image', name: 'real_image', orderable: false, searchable: false},
-                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                    {data: 'pengawas_image', name: 'pengawas_image', orderable: false, searchable: false}
                 ]
             });
         });

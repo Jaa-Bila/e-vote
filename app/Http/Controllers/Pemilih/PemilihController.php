@@ -32,34 +32,33 @@ class PemilihController extends Controller
                     $urlShow = route('pemilih.show', $row->id);
                     $urlEdit = route('pemilih.edit', $row->id);
                     $urlActivate = route('pemilih.activate', $row->id);
-                    $urlConfirm = route('pemilih.confirm', $row->id);
                     $urlDelete = route('pemilih.destroy', $row->id);
                     $button = '';
+                    
                     if(in_array('PENGAWAS', Session::get('user_roles'))){
-                        $button = $button . '<form action="' .  $urlConfirm  . '" method="post">' .
-                        csrf_field()  .
-                        '<button class="btn btn-info" type="submit" onclick="return confirm(' .
-                        "'Are you want to confirm $row->name ?')" .
-                        '" href="' .  $urlConfirm  . '">Confirm</button>' .
-                        '</form>';
-                    }
-                    if($row->status === 0){
-                        $button = $button . '<form action="' .  $urlActivate  . '" method="post">' .
-                            csrf_field()  .
-                            '<button class="btn btn-warning" type="submit" onclick="return confirm(' .
-                            "'Are you want to activate $row->name ?')" .
-                            '" href="' .  $urlActivate  . '">Activate</button>' .
-                            '</form>';
-                    }
-                    $button = $button .
+                        $button = $button . '<a href="#" class="btn_cam btn btn-primary" style="margin-right: 10px" onclick="takeAPhoto(' . $row->id . ')" data-toggle="modal" data-target="#modal-lg" data-backdrop="static">Camera</a>';
+                    }else{
+                        if($row->status === 0){
+                            $button = $button . '<form action="' .  $urlActivate  . '" method="post">' .
+                                csrf_field()  .
+                                '<button class="btn btn-warning" type="submit" onclick="return confirm(' .
+                                "'Are you want to activate $row->name ?')" .
+                                '" href="' .  $urlActivate  . '">Activate</button>' .
+                                '</form>';
+                        }
+                        
+                        $button = $button .
                         '<form action="' .  $urlDelete  . '" method="post">' .
-                        '<a href="' . $urlShow . '" class=" btn btn-info" style="margin-right: 10px">Show</a>' .
-                        '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
+                        '<a href="' . $urlShow . '" class=" btn btn-primary" style="margin-right: 10px">Show</a>' .
+                        '<a href="' . $urlEdit . '" class=" btn btn-info" style="margin-right: 10px">Edit</a>' .
+                        '<a href="#" class="btn_cam btn btn-primary" style="margin-right: 10px" onclick="takeAPhoto(' . $row->id . ')" data-toggle="modal" data-target="#modal-lg" data-backdrop="static">Camera</a>' .
                         csrf_field()  . method_field("DELETE")  .
                         '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
                         "'Are you sure delete $row->name ?')" .
                         '" href="' .  $urlDelete  . '">Delete</button>' .
                         '</form>';
+                    }
+                   
                     return $button;
                 })
                 ->rawColumns(['image', 'action'])
@@ -84,13 +83,6 @@ class PemilihController extends Controller
         $user->status = 1;
         $user->save();
         return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
-    }
-
-    public function confirm($id){
-        DB::table('user_votes')->where('user_id', $id)->update([
-            'confirmed' => 1
-        ]);
-        return redirect()->back()->with('success', 'Berhasil mengkonfirmasi voting user');
     }
 
     public function store(Request $request)
@@ -119,7 +111,7 @@ class PemilihController extends Controller
             'kecamatan' => $request->kecamatan,
             'desa_kelurahan' => $request->desa_kelurahan,
             'foto' => $imagePath,
-            'status' => 1
+            'status' => 0
         ]);
 
         $user->roles()->attach([4]);
@@ -170,6 +162,10 @@ class PemilihController extends Controller
 
     public function destroy(User $user)
     {
+        if($user->id === auth()->user()->id){
+            return redirect()->back()->withErrors(['Anda tidak dapat menonaktifkan diri anda sendiri.']);
+        }
+        
         $user->status = 0;
         $user->save();
         return redirect()->back()->with('success', 'Berhasil menonaktifkan user');
@@ -185,19 +181,6 @@ class PemilihController extends Controller
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('action', function($row) {
-                    $urlConfirm = route('pemilih.confirm', $row->user_id);
-                    $button = '';
-                    if((in_array('PENGAWAS', Session::get('user_roles')) && $row->confirmed === 0) || (in_array('ADMIN', Session::get('user_roles'))  && $row->confirmed === 0)){
-                        $button = $button . '<form action="' .  $urlConfirm  . '" method="post">' .
-                        csrf_field()  .
-                        '<button class="btn btn-info" type="submit" onclick="return confirm(' .
-                        "'Are you want to confirm $row->name ?')" .
-                        '" href="' .  $urlConfirm  . '">Confirm</button>' .
-                        '</form>';
-                    }
-                    return $button;
-                })
                 ->editColumn('image', function($row) {
                     $url = asset($row->vote_selfie);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
@@ -206,7 +189,11 @@ class PemilihController extends Controller
                     $url = asset($row->foto);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
-                ->rawColumns(['action', 'image', 'real_image'])
+                ->editColumn('pengawas_image', function($row){
+                    $url = asset($row->foto_pengawas);
+                    return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
+                })
+                ->rawColumns(['image', 'real_image', 'pengawas_image'])
                 ->make(true);
         }
 
@@ -242,6 +229,11 @@ class PemilihController extends Controller
 
     public function votePage()
     {
+        if(auth()->user()->foto_pengawas === null)
+        {
+            return redirect()->back()->withErrors(['Anda belum memiliki foto dari pengawas.']);
+        }
+
         $paslon = DB::table('users')
             ->join('user_role', 'users.id', '=', 'user_role.user_id')
             ->where('user_role.role_id', 3)
@@ -263,7 +255,7 @@ class PemilihController extends Controller
                 $user->save();
             }
 
-            $imagename = "vote-".Carbon::now()->format('dmyHis  ') . ".png";
+            $imagename = "vote-".Carbon::now()->format('dmyHis') . ".png";
             $imagePath = 'storage/image/' . $imagename;
             $img = str_replace('data:image/png;base64,', '', $request->foto_selfie);
             $img = str_replace(' ', '+', $img);
@@ -288,9 +280,24 @@ class PemilihController extends Controller
         return response()->json($request->all());
     }
 
-    public function getVoterImage()
-    {
-        $data = DB::table('user_votes')->where('user_id', auth()->user()->id)->first();
-        return view('pemilih.image', ['data' => $data]);
+    public function fotoPengawas(Request $request){
+        try{
+            $imagename = "pengawas-".Carbon::now()->format('dmyHis') . ".png";
+            $imagePath = 'storage/image/' . $imagename;
+            $img = str_replace('data:image/png;base64,', '', $request->foto_pengawas);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            file_put_contents(public_path($imagePath), $data);
+
+            DB::table('users')
+            ->where('id', $request->user_id)
+            ->update([
+                'foto_pengawas' => $imagePath
+            ]);
+        }catch (\Exception $e){
+            return response()->json($e->getMessage());
+        }
+
+        return response()->json($request->all());
     }
 }

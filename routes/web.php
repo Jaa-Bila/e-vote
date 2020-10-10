@@ -32,7 +32,8 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
     Route::prefix('/pemilih')->group(function(){
-        Route::post('/confirm/{id}', [PemilihController::class, 'confirm'])->name('pemilih.confirm');
+        Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
+        Route::post('/foto', [PemilihController::class, 'fotoPengawas'])->name('pemilih.foto_pengawas');
         Route::get('/user/voted', [PemilihController::class, 'getUserVote'])->name('pemilih.voted');
         Route::get('/user/not-voted', [PemilihController::class, 'getUserNotVote'])->name('pemilih.not_voted');
     });
@@ -63,7 +64,6 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
 
     Route::prefix('/calon')->group(function(){
         Route::get('/', [PaslonController::class, 'index'])->name('calon.index');
-        Route::get('{user}/show', [PaslonController::class, 'show'])->name('calon.show');
         Route::get('/create', [PaslonController::class, 'create'])->name('calon.create');
         Route::get('/{user}', [PaslonController::class, 'edit'])->name('calon.edit');
         Route::post('/activate/{user}', [PaslonController::class, 'activate'])->name('calon.activate');
@@ -73,7 +73,6 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
     });
 
     Route::prefix('/pemilih')->group(function(){
-        Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
         Route::get('{user}/show', [PemilihController::class, 'show'])->name('pemilih.show');
         Route::get('/create', [PemilihController::class, 'create'])->name('pemilih.create');
         Route::get('/{user}', [PemilihController::class, 'edit'])->name('pemilih.edit');
@@ -87,14 +86,14 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
 Route::middleware(['auth', 'role:PASLON'])->group(function(){
     Route::prefix('/calon')->group(function(){
         Route::get('/', [PaslonController::class, 'index'])->name('calon.index');
+        Route::get('{user}/show', [PaslonController::class, 'show'])->name('calon.show');
         Route::get('/{user}', [PaslonController::class, 'edit'])->name('calon.edit');
         Route::put('/{user}', [PaslonController::class, 'update'])->name('calon.update');
     });
 });
 
-Route::middleware(['auth', 'check_vote'])->group(function(){
+Route::middleware(['check_vote', 'auth'])->group(function(){
     Route::get('/pilkades', [PemilihController::class, 'votePage'])->name('pemilih.vote_page');
-    Route::get('/pilkades/foto', [PemilihController::class, 'getVoterImage'])->name('pemilih.voter_image');
     Route::post('/pilkades', [PemilihController::class, 'vote'])->name('pemilih.vote');
 });
 

@@ -57,15 +57,13 @@
                     </a>
                 </li>
                 @endif
-                @if (in_array('ADMIN', Session::get('user_roles')))
+                @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
                 <li class="nav-item">
                     <a href="{{route('pemilih.index')}}" class="nav-link"  {{ Request::is("*pemilih") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
                         <p>Daftar Pemilih</p>
                     </a>
-                </li>
-                @endif
-                @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
+                </li>               
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>

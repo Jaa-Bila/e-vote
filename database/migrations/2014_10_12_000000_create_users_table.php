@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->text('keterangan_tambahan')->nullable();
             $table->text('visi_misi')->nullable();
             $table->string('foto')->nullable();
+            $table->string('foto_pengawas')->nullable();
             $table->smallInteger('status')->default(0);
             $table->dateTime('last_login_at')->nullable()->default(null);
             $table->timestamps();

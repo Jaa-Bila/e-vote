@@ -70,11 +70,24 @@ class LoginController extends Controller
         }
 
         auth()->loginUsingId($user->id);
+
         $roles = [];
         foreach (auth()->user()->roles as $role) {
             array_push($roles, $role->role_name);
         }
         Session::put('user_roles', $roles);
+
+        if(auth()->user()->vote !== null && count($roles) < 2){
+            auth()->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+            throw ValidationException::withMessages([
+                $this->username() => [trans('auth.already_vote')],
+            ]);
+        }
+
         return true;
     }
 
