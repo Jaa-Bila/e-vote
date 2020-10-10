@@ -21,7 +21,7 @@ class MenuSeeder extends Seeder
                 ['name' => 'Daftar Pengawas'],
                 ['name' => 'Daftar Calon'],
                 ['name' => 'Daftar Pemilih'],
-                ['name' => 'Daftar Daftar Data Pemilih'],
+                ['name' => 'Daftar Data Pemilih'],
                 ['name' => 'Sudah Memilih'],
                 ['name' => 'Belum Memilih'],
                 ['name' => 'Rekap Suara Masuk'],
