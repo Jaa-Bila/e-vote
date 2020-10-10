@@ -33,19 +33,19 @@
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is("*dashboard") ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
+                        <p>{{$menus[0]->name}}</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('admin.index')}}" class="nav-link {{ Request::is("*admin") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
-                        <p>Daftar Admin</p>
+                        <p>{{$menus[1]->name}}</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('pengawas.index')}}" class="nav-link  {{ Request::is("*pengawas") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
-                        <p>Daftar Pengawas</p>
+                        <p>{{$menus[2]->name}}</p>
                     </a>
                 </li>
                 @endif
@@ -53,7 +53,7 @@
                 <li class="nav-item">
                     <a href="{{route('calon.index')}}" class="nav-link" {{ Request::is("*calon") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
-                        <p>Daftar Calon</p>
+                        <p>{{$menus[3]->name}}</p>
                     </a>
                 </li>
                 @endif
@@ -61,14 +61,14 @@
                 <li class="nav-item">
                     <a href="{{route('pemilih.index')}}" class="nav-link"  {{ Request::is("*pemilih") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
-                        <p>Daftar Pemilih</p>
+                        <p>{{$menus[4]->name}}</p>
                     </a>
                 </li>               
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Daftar Data Pemilih
+                            {{$menus[5]->name}}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -76,13 +76,13 @@
                         <li class="nav-item">
                             <a href="{{route('pemilih.voted')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Sudah Memilih</p>
+                                <p>{{$menus[6]->name}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('pemilih.not_voted')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Belum Memilih</p>
+                                <p>{{$menus[7]->name}}</p>
                             </a>
                         </li>
                     </ul>
@@ -93,7 +93,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-folder"></i>
                         <p>
-                            Rekap Suara Masuk
+                            {{$menus[8]->name}}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -101,7 +101,7 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Rekap Perolehan</p>
+                                <p>{{$menus[9]->name}}</p>
                             </a>
                         </li>
                     </ul>
@@ -109,19 +109,19 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-folder"></i>
-                        <p>Laporan Hasil Pemilihan</p>
+                        <p>{{$menus[10]->name}}</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('menu.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
-                        <p>Pengguna</p>
+                        <p>{{$menus[11]->name}}</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-cogs"></i>
-                        <p>Pengaturan Web</p>
+                        <p>{{$menus[12]->name}}</p>
                     </a>
                 </li>
                 @endif

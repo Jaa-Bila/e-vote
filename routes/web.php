@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Menu\MenuController;
 use App\Http\Controllers\Pengawas\PengawasController;
 use App\Http\Controllers\Paslon\PaslonController;
 use App\Http\Controllers\Pemilih\PemilihController;
@@ -80,6 +81,12 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
         Route::post('/', [PemilihController::class, 'store'])->name('pemilih.store');
         Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
         Route::delete('/{user}', [PemilihController::class, 'destroy'])->name('pemilih.destroy');
+    });
+
+    Route::prefix('/pengguna')->group(function() {
+        Route::get('/', [MenuController::class, 'index'])->name('menu.index');
+        Route::get('/{menu}', [MenuController::class, 'edit'])->name('menu.edit');
+        Route::put('/{menu}', [MenuController::class, 'update'])->name('menu.update');
     });
 });
 
