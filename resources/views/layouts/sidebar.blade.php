@@ -59,7 +59,7 @@
                 @endif
                 @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
                 <li class="nav-item">
-                    <a href="{{route('pemilih.index')}}" class="nav-link"  {{ Request::is("*pemilih") ? 'active' : '' }}">
+                    <a href="{{route('pemilih.index')}}" class="nav-link" {{ Request::is("*pemilih") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
                         <p>{{$menus[4]->name}}</p>
                     </a>
@@ -99,7 +99,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('rekap_perolehan.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{$menus[9]->name}}</p>
                             </a>
