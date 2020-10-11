@@ -29,7 +29,7 @@ class RekapPerolehanSuara extends Controller
             'desa' => $countPemilih[1]->desa_kelurahan,
             'totalPemilih' => count($countPemilih),
             'totalVoter' => $countPemilihVoted,
-            'presentase' => $countPemilihVoted / count($countPemilih)
+            'presentase' => $countPemilihVoted / count($countPemilih) * 100
         ]);
     }
 }

@@ -15,11 +15,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="chart-responsive">
+                <h3 class="text-center ml-3"><strong>Grafik Presentase Suara Masuk</strong></h3>
                 <canvas id="rekapPerolehan" height="150"></canvas>
               </div>
             </div>
             <div class="col-md-6">
-                <h3></h3>
+                <h3 class="text-center"><strong>Tabel Presentase Suara</strong></h3>
+                <h6 class="text-center mb-5">Suara Masuk Per Kecamatan</h6>
                 <table class="table table-bordered" style="width: 100%">
                     <thead style="background-color: blue;color:white;">
                         <tr>
@@ -32,7 +34,7 @@
                         <tr>
                             <td class="text-left">{{$data['desa']}}</td>
                             <td class="text-right">{{$data['totalVoter']}} / {{$data['totalPemilih']}}</td>
-                            <td class="text-right">{{$data['presentase']}}</td>
+                            <td class="text-right">{{$data['presentase']}}%</td>
                         </tr>
                     </tbody>
                 </table>
@@ -53,10 +55,10 @@
     var horizontalBarChartData = {
         labels: [DESA],
         datasets: [{
-            label: 'Total Pemilih',
+            label: '% Suara Masuk',
             backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
             borderWidth: 1,
-            data: [{{$data['totalVoter']}}]
+            data: [{{$data['presentase']}}, 100]
         }]
 
     };
@@ -68,7 +70,11 @@
             data: horizontalBarChartData,
             options: {  
                 legend: {
-                    position: 'right',
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Grafik Presentase Suara Masuk'
                 }
             }
         });
