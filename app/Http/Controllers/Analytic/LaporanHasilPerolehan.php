@@ -14,6 +14,11 @@ class LaporanHasilPerolehan extends Controller
     {
         $candidates = Role::find(3)->users;
         $users = User::all();
+
+        if(count($users) < 2){
+            return redirect(route('dashboard'))->withErrors('Silahkan input data pemilih untuk membuka page laporan hasil perolehan.');
+        }
+
         $voters = DB::table('users')
         ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
         ->get();

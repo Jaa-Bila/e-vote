@@ -21,9 +21,9 @@ class RekapPerolehanSuara extends Controller
             ->where('user_role.role_id', 4)
             ->count();
 
-        if(is_null($countPemilih[1]->desa_kelurahan)){
-            return redirect(route('dashboard'))->withErrors(['Desa/Kelurahan pemilih nomor urut 1 masih kosong, masukkan data desa/kelurahan untuk melihat rekap perolehan.']);
-        }
+            if(count($countPemilih) < 2){
+                return redirect(route('dashboard'))->withErrors('Silahkan input data pemilih untuk membuka page rekap perolehan suara.');
+            }
 
         return view('rekap_perolehan.index')->with('data', [
             'desa' => $countPemilih[1]->desa_kelurahan,
