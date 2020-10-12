@@ -107,7 +107,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('laporan_hasil_perolehan.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-folder"></i>
                         <p>{{$menus[10]->name}}</p>
                     </a>

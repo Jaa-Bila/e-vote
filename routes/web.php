@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Analytic\LaporanHasilPerolehan;
 use App\Http\Controllers\Analytic\RekapPerolehanSuara;
 use App\Http\Controllers\Menu\MenuController;
 use App\Http\Controllers\Pengawas\PengawasController;
@@ -92,6 +93,11 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
 
     Route::prefix('/rekap-perolehan')->group(function() {
         Route::get('/', [RekapPerolehanSuara::class, 'index'])->name('rekap_perolehan.index');
+    });
+
+    Route::prefix('laporan-hasil-perolehan')->group(function(){
+        Route::get('/', [LaporanHasilPerolehan::class, 'index'])->name('laporan_hasil_perolehan.index');
+        Route::get('/download', [LaporanHasilPerolehan::class, 'exportPDF'])->name('laporan_hasil_perolehan.download');
     });
 });
 
