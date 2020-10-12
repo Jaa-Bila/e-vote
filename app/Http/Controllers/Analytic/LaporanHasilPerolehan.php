@@ -46,7 +46,7 @@ class LaporanHasilPerolehan extends Controller
             array_push($candidateVoters, [
                 'name' => $candidate->name,
                 'count' => $candidateVoter,
-                'presentase' => $candidateVoter / count($voters) * 100 . '%'
+                'presentase' => count($voters) === 0 ? 0 : $candidateVoter / count($voters) * 100 . '%'
             ]);
         }
 
@@ -91,7 +91,7 @@ class LaporanHasilPerolehan extends Controller
             array_push($candidateVoters, [
                 'name' => $candidate->name,
                 'count' => $candidateVoter,
-                'presentase' => $candidateVoter / count($voters) * 100 . '%'
+                'presentase' => count($voters) === 0 ? 0 : $candidateVoter / count($voters) * 100 . '%'
             ]);
         }
 
