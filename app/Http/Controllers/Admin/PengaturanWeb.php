@@ -163,6 +163,11 @@ class PengaturanWeb extends Controller
         return view('pengaturan_web.edit_informasi_panduan')->with('electionInformation', $electionInformation);
     }
 
+    public function editMarquee(MarqueeText $marqueeText)
+    {
+        return view('pengaturan_web.edit_marquee')->with('marquee', $marqueeText);
+    }
+
     public function updateElectionInformation(Request $request, ElectionInformation $electionInformation)
     {
         $electionInformation->informasi = $request->informasi;
@@ -171,6 +176,13 @@ class PengaturanWeb extends Controller
 
         return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil mengupdate data informasi pemilihan');
     }
+    
+    public function updateMarquee(Request $request, MarqueeText $marqueeText)
+    {
+        $marqueeText->text = $request->text;
+        $marqueeText->save();
+        return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil mengupdate tulisan berjalan');
+    }
 
     public function deleteCarousel(LandingCarouselPhoto $landingCarouselPhoto)
     {
@@ -178,7 +190,16 @@ class PengaturanWeb extends Controller
         Storage::delete('/public' . $oldPhoto);
         $landingCarouselPhoto->delete();
 
-        return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil menghapus carousel');
+        return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil menghapus foto pada carousel');
+    }
+
+    public function deleteGallery(Gallery $gallery)
+    {
+        $oldPhoto = explode('storage', $gallery->path)[1];
+        Storage::delete('/public' . $oldPhoto);
+        $gallery->delete();
+
+        return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil menghapus foto pada gallery');
 
     }
 }
