@@ -119,7 +119,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('pengaturan_web.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-cogs"></i>
                         <p>{{$menus[12]->name}}</p>
                     </a>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PengaturanWeb;
 use App\Http\Controllers\Analytic\LaporanHasilPerolehan;
 use App\Http\Controllers\Analytic\RekapPerolehanSuara;
 use App\Http\Controllers\Menu\MenuController;
@@ -25,13 +26,19 @@ Auth::routes([
     'reset' => false,
     'verify' => false,
 ]);
-Route::get('/', function () {
-    return redirect( route('login')) ;
-});
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::get('/visi-misi', [HomeController::class, 'visiMisi'])->name('visi_misi');
+Route::get('/informasi-pemilihan', [HomeController::class, 'informasiPemilihan'])->name('informasi_pemilihan');
+Route::get('/panduan-memilih', [HomeController::class, 'panduanMemilih'])->name('panduan_memilih');
+Route::get('/jumlah-pemilih', [HomeController::class, 'jumlahPemilih'])->name('jumlah_pemilih');
+Route::get('/galeri', [HomeController::class, 'galeri'])->name('galeri');
+
 Route::get('/home', function () {
     return redirect( route('dashboard')) ;
 });
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 
 Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
     Route::prefix('/pemilih')->group(function(){
@@ -98,6 +105,25 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
     Route::prefix('laporan-hasil-perolehan')->group(function(){
         Route::get('/', [LaporanHasilPerolehan::class, 'index'])->name('laporan_hasil_perolehan.index');
         Route::get('/download', [LaporanHasilPerolehan::class, 'exportPDF'])->name('laporan_hasil_perolehan.download');
+    });
+
+    Route::prefix('pengaturan-web')->group(function(){
+        Route::get('/', [PengaturanWeb::class, 'index'])->name('pengaturan_web.index');
+        Route::get('/gallery', [PengaturanWeb::class, 'indexGalleries'])->name('pengaturan_web.indexGalleries');
+        Route::get('/gallery/create', [PengaturanWeb::class, 'createGalleries'])->name('pengaturan_web.createGalleries');
+        Route::get('/carousel', [PengaturanWeb::class, 'indexLandingCarousel'])->name('pengaturan_web.indexLandingCarousel');
+        Route::get('/carousel/create', [PengaturanWeb::class, 'createCarousel'])->name('pengaturan_web.createCarousel');
+        Route::get('/election-information', [PengaturanWeb::class, 'indexElectionInformation'])->name('pengaturan_web.indexElectionInformation');
+        Route::get('/election-information/{electionInformation}', [PengaturanWeb::class, 'editElectionInformation'])->name('pengaturan_web.editElectionInformation');
+        Route::get('/marquee', [PengaturanWeb::class, 'indexMarquee'])->name('pengaturan_web.indexMarquee');
+
+        Route::post('/carousel', [PengaturanWeb::class, 'storeCarousel'])->name('pengaturan_web.storeCarousel');
+        Route::post('/gallery', [PengaturanWeb::class, 'storeGallery'])->name('pengaturan_web.storeGallery');
+
+        Route::put('/election-information/{electionInformation}', [PengaturanWeb::class, 'updateElectionInformation'])->name('pengaturan_web.updateElectionInformation');
+
+        Route::delete('/carousel/{landingCarouselPhoto}', [PengaturanWeb::class, 'deleteCarousel'])->name('pengaturan_web.deleteCarousel');
+        Route::delete('/gallery/{gallery}', [PengaturanWeb::class, 'deleteGallery'])->name('pengaturan_web.deleteGallery');
     });
 });
 

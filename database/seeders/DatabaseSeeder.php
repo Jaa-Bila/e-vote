@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserRoleSeeder::class);
         $this->call(MenuSeeder::class);
+        $this->call(ElectionInformationSeeder::class);
+        $this->call(MarqueeTextSeeder::class);
         // User::factory(10)->create();
     }
 }

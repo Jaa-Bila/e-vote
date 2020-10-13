@@ -4,50 +4,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
+    <nav class=" navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+            <li>
+                <h4 class="brand-text ml-3 mt-2">
+                    <a href="/" style="color: black;text-decoration: none">
+                        PEMILIHAN KEPALA DESA
+                    </a>
+                </h4>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="{{route('login')}}">
+                    <button class="btn btn-sm" style="width: 100px;">Login</button>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <div id="app">
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 </body>
-<script>
-    $('ul.nav-treeview li').find('a').each(function () {
-        var link = new RegExp($(this).attr('href')); //Check if some menu compares inside your the browsers link
-        if (link.test(document.location.href)) {
-            if(!$(this).parents().hasClass('active')){
-                $(this).parents('li').addClass('menu-open');
-                $(this).parents().addClass("active");
-                $(this).addClass("active"); //Add this too
-            }
-        }
-    });
-</script>
-<!-- jQuery -->
 <script src="{{ asset('dist/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap -->
 <script src="{{ asset('dist/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<!-- ChartJS -->
-{{-- <script src="plugins/chart.js/Chart.min.js"></script> --}}
-
-
-<!-- PAGE SCRIPTS -->
-{{-- <script src="dist/js/pages/dashboard2.js"></script> --}}
+@yield('js')
 </html>
