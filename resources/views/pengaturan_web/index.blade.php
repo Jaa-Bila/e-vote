@@ -78,9 +78,10 @@
 
     <div class="card">
         <div class="card-header">
-            <h5>Marquee</h5>
+            <h5>Tulisan Berjalan</h5>
         </div>
         <div class="card-body" style="display: block;">
+            <a href="{{route('pengaturan_web.createMarquee')}}"><button type="button" class="btn btn-primary float-right mb-3">+ Tambahkan Tulisan Berjalan</button></a>
             <div class="mt-3">
                 <table class="data-table-marquee display nowrap" style="width:100%">
                     <thead>

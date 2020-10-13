@@ -106,8 +106,15 @@ class PengaturanWeb extends Controller
                     return Str::limit($row->text, 30);
                 })
                 ->addColumn('action', function ($row) {
-                    $urlEdit = route('admin.edit', $row->id);
-                    $button = '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>';
+                    $urlEdit = route('pengaturan_web.editMarquee', $row->id);
+                    $urlDelete = route('pengaturan_web.deleteMarquee', $row->id);
+                    $button = '<form action="' .  $urlDelete  . '" method="post">' .
+                        '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>'.
+                        csrf_field()  . method_field("DELETE")  .
+                        '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
+                        "'Are you sure delete this ?')" .
+                        '" href="' .  $urlDelete  . '">Delete</button>' .
+                        '</form>';
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -125,6 +132,11 @@ class PengaturanWeb extends Controller
         return view('pengaturan_web.create_gallery');
     }
 
+    public function createMarquee()
+    {
+        return view('pengaturan_web.create_marquee');
+    }
+
     public function storeCarousel(Request $request)
     {
         $image = $request->file('image');
@@ -139,6 +151,15 @@ class PengaturanWeb extends Controller
         ]);
 
         return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil menambahkah foto carousel');
+    }
+
+    public function storeMarquee(Request $request)
+    {
+        $marqueeText = new MarqueeText();
+        $marqueeText->text = $request->text;
+        $marqueeText->save();
+
+        return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil menambahkan tulisan berjalan');
     }
 
     public function storeGallery(Request $request)
@@ -200,6 +221,11 @@ class PengaturanWeb extends Controller
         $gallery->delete();
 
         return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil menghapus foto pada gallery');
+    }
 
+    public function deleteMarquee(MarqueeText $marqueeText)
+    {
+        $marqueeText->delete();
+        return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil menghapus tulisan berjalan');
     }
 }

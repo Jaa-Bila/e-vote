@@ -116,14 +116,17 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
         Route::get('/election-information', [PengaturanWeb::class, 'indexElectionInformation'])->name('pengaturan_web.indexElectionInformation');
         Route::get('/election-information/{electionInformation}', [PengaturanWeb::class, 'editElectionInformation'])->name('pengaturan_web.editElectionInformation');
         Route::get('/marquee', [PengaturanWeb::class, 'indexMarquee'])->name('pengaturan_web.indexMarquee');
+        Route::get('/marquee/create', [PengaturanWeb::class, 'createMarquee'])->name('pengaturan_web.createMarquee');
         Route::get('/marquee/{marqueeText}', [PengaturanWeb::class, 'editMarquee'])->name('pengaturan_web.editMarquee');
 
+        Route::post('/marquee', [PengaturanWeb::class, 'storeMarquee'])->name('pengaturan_web.storeMarquee');
         Route::post('/carousel', [PengaturanWeb::class, 'storeCarousel'])->name('pengaturan_web.storeCarousel');
         Route::post('/gallery', [PengaturanWeb::class, 'storeGallery'])->name('pengaturan_web.storeGallery');
 
         Route::put('/election-information/{electionInformation}', [PengaturanWeb::class, 'updateElectionInformation'])->name('pengaturan_web.updateElectionInformation');
         Route::put('/marquee/{marqueeText}', [PengaturanWeb::class, 'updateMarquee'])->name('pengaturan_web.updateMarquee');
 
+        Route::delete('/marquee/{marqueeText}', [PengaturanWeb::class, 'deleteMarquee'])->name('pengaturan_web.deleteMarquee');
         Route::delete('/carousel/{landingCarouselPhoto}', [PengaturanWeb::class, 'deleteCarousel'])->name('pengaturan_web.deleteCarousel');
         Route::delete('/gallery/{gallery}', [PengaturanWeb::class, 'deleteGallery'])->name('pengaturan_web.deleteGallery');
     });
