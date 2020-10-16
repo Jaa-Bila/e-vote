@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\UserVote;
 use App\Models\UserRole;
 use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -30,17 +31,45 @@ class HomeController extends Controller
 
     public function dashboard()
     {
+        // $candidates = Role::find(3)->users;
+        // $total_voters = UserRole::where('role_id', 4)->count();
+        // $votes = [];
+        // $candidate_labels = [];
+        // foreach ($candidates as $candidate) {
+        //     $candidate_vote = UserVote::where('paslon_id', $candidate->id)->count();
+        //     array_push($votes, $candidate_vote);
+        //     array_push($candidate_labels, $candidate->name);
+        // }
+        // $voted_voters = array_sum($votes);
         $candidates = Role::find(3)->users;
-        $total_voters = UserRole::where('role_id', 4)->count();
-        $votes = [];
-        $candidate_labels = [];
-        foreach ($candidates as $candidate) {
-            $candidate_vote = UserVote::where('paslon_id', $candidate->id)->count();
-            array_push($votes, $candidate_vote);
-            array_push($candidate_labels, $candidate->name);
+        $users = User::all();
+
+        $voters = DB::table('users')
+        ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
+        ->get();
+
+        $usersNotVote = $users->filter(function($user) use ($voters){
+            return !$voters->contains(function($vote) use ($user){
+                 return $vote->user_id == $user->id;
+            });
+        })->count();
+
+        $candidateVoteCounts = [];
+        foreach($candidates as $candidate){
+            $candidateVoteCount = $voters->filter(function($vote) use ($candidate){
+                return $vote->paslon_id === $candidate->id;
+            })->count();
+            
+            array_push($candidateVoteCounts, $candidateVoteCount);
         }
-        $voted_voters = array_sum($votes);
-        return view('home', compact('candidate_labels', 'votes', 'total_voters', 'voted_voters'));
+
+        return view('home')->with([
+            'users' => count($users),
+            'candidates' => $candidates,
+            'voters' => count($voters),
+            'usersNotVotee' => $usersNotVote,
+            'candidateVoteCounts' => $candidateVoteCounts
+        ]);
     }
 
     public function profile()

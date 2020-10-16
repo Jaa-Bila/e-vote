@@ -2,60 +2,72 @@
 
 @section('title', 'Home')
 
+@section('css')
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+@endsection
+
 @section('content')
 <div class="container-fluid">
   @include('message_info')
-  @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
   <div class="row">
-    <div class="col-12 col-sm-6 col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Hasil Pemilihan</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="chart-responsive">
-                <canvas id="electionResultChart" height="150"></canvas>
-              </div>
-              <!-- ./chart-responsive -->
-            </div>
-            <!-- /.col -->
+    @if (!in_array('PENGAWAS', Session::get('user_roles')))
+      @foreach($candidates as $index=>$candidate)
+      <div class="col-3 col-sm-6 col-md-3">
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <h4>Calon {{$index + 1}}</h4>
+            <h5>{{$candidateVoteCounts[$index]}}</h5>
           </div>
-          <!-- /.row -->
+          <div class="icon">
+            <i class="ion ion-android-people"></i>
+          </div>
+          <a href="{{route('calon.show', $candidate->id)}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
-        <!-- /.card-body -->
+      </div>
+      @endforeach
+    @endif
+    <div class="col-3 col-sm-6 col-md-3">
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h4>Data Pemilih</h4>
+
+          <h5>{{$users}}</h5>
+        </div>
+        <div class="icon">
+          <i class="ion ion-ios-paper"></i>
+        </div>
+        <a href="{{route('pemilih.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
-    <!-- /.col -->
-    <div class="col-12 col-sm-6 col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Partisipasi Pemilih</h3>
+    <div class="col-3 col-sm-6 col-md-3">
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h4>Sudah Memilih</h4>
+          <h5>{{$voters / $users * 100}} %</h5>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="chart-responsive">
-                <canvas id="voterParticipationChart" height="150"></canvas>
-              </div>
-              <!-- ./chart-responsive -->
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
+        <div class="icon">
+          <i class="ion ion-stats-bars"></i>
         </div>
-        <!-- /.card-body -->
+        <a href="{{route('pemilih.voted')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
-    <!-- /.col -->
+    <div class="col-3 col-sm-6 col-md-3">
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h4>Belum Memilih</h4>
+          <h5>{{$usersNotVotee / $users * 100}} %</h5>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars"></i>
+        </div>
+        <a href="{{route('pemilih.not_voted')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
   </div>
-  @endif
 </div>
 @endsection
-@section('js')
+{{-- @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script>
     var electionResultCanvas = $('#electionResultChart').get(0).getContext('2d')
@@ -114,4 +126,4 @@
       options: pieOptions
     })
 </script>
-@endsection
+@endsection --}}
