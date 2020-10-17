@@ -10,9 +10,11 @@
 @section('content')
 <div class="card card-primary">
     <div class="card-body" style="display: block;">
-        <a href="{{route('pemilih.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan
-                Pemilih</button></a>
-
+        @if(in_array('ADMIN', Session::get('user_roles')))
+            <a href="{{route('pemilih.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan
+                    Pemilih</button></a>
+        @endif
+        
         @include('message_info')
         <div class="mt-3">
             <table class="data-table display nowrap" style="width:100%">
@@ -101,7 +103,6 @@
             ]
         });
     });
-
 </script>
 <script>
     function takeAPhoto(id) {
@@ -139,5 +140,33 @@
         });
     }
 
+</script>
+<script>
+    function confirmUser(id) {
+        $.ajax({
+            type: 'POST',
+            url: `/pemilih/activate/${id}`,
+            data: {
+                _token: "{{csrf_token()}}"
+            },
+            success: () => {
+                window.location.reload()
+            }
+        })
+    }
+</script>
+<script>
+    function deleteUser(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: `/pemilih/${id}`,
+            data: {
+                _token: "{{csrf_token()}}"
+            },
+            success: () => {
+                window.location.reload()
+            }
+        })
+    }
 </script>
 @endsection

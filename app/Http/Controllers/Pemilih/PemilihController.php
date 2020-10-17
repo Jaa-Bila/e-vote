@@ -31,34 +31,17 @@ class PemilihController extends Controller
                 ->addColumn('action', function($row) {
                     $urlShow = route('pemilih.show', $row->id);
                     $urlEdit = route('pemilih.edit', $row->id);
-                    $urlActivate = route('pemilih.activate', $row->id);
-                    $urlDelete = route('pemilih.destroy', $row->id);
-                    $button = '';
-                    
-                    if(in_array('PENGAWAS', Session::get('user_roles'))){
-                        $button = $button . '<a href="#" class="btn_cam btn btn-primary" style="margin-right: 10px" onclick="takeAPhoto(' . $row->id . ')" data-toggle="modal" data-target="#modal-lg" data-backdrop="static">Camera</a>';
-                    }else{
-                        if($row->status === 0){
-                            $button = $button . '<form action="' .  $urlActivate  . '" method="post">' .
-                                csrf_field()  .
-                                '<button class="btn btn-warning" type="submit" onclick="return confirm(' .
-                                "'Are you want to activate $row->name ?')" .
-                                '" href="' .  $urlActivate  . '">Activate</button>' .
-                                '</form>';
-                        }
-                        
-                        $button = $button .
-                        '<form action="' .  $urlDelete  . '" method="post">' .
-                        '<a href="' . $urlShow . '" class=" btn btn-primary" style="margin-right: 10px">Show</a>' .
-                        '<a href="' . $urlEdit . '" class=" btn btn-info" style="margin-right: 10px">Edit</a>' .
-                        '<a href="#" class="btn_cam btn btn-primary" style="margin-right: 10px" onclick="takeAPhoto(' . $row->id . ')" data-toggle="modal" data-target="#modal-lg" data-backdrop="static">Camera</a>' .
-                        csrf_field()  . method_field("DELETE")  .
-                        '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
-                        "'Are you sure delete $row->name ?')" .
-                        '" href="' .  $urlDelete  . '">Delete</button>' .
-                        '</form>';
+                    $button = '<a href="' . $urlEdit . '" class=" btn btn-warning" style="margin-right: 10px">Edit</a>'.
+                    '<a href="' . $urlShow . '" class=" btn btn-primary" style="margin-right: 10px">Show</a>';
+                    if($row->status === 0){
+                        $button = $button . '<a href="#" class=" btn btn-info" id="confirm-user" onclick="confirmUser('. $row->id .')" style="margin-right: 10px">Confirm</a>';
                     }
-                   
+                    $button = $button .
+                    '<a href="#" class="btn_cam btn btn-primary" style="margin-right: 10px" onclick="takeAPhoto(' . $row->id . ')" data-toggle="modal" data-target="#modal-lg" data-backdrop="static">Camera</a>';
+                    if(in_array('ADMIN', Session::get('user_roles'))){
+                        $button = $button . '<a href="#" class=" btn btn-danger" id="delete-user" onclick="deleteUser('. $row->id .')" style="margin-right: 10px">Delete</a>';
+                    }
+
                     return $button;
                 })
                 ->rawColumns(['image', 'action'])
@@ -82,7 +65,8 @@ class PemilihController extends Controller
     {
         $user->status = 1;
         $user->save();
-        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
+        Session::flash('success', 'Berhasil mengkonfirmasi user');
+        return response()->json('success');
     }
 
     public function store(Request $request)
@@ -163,12 +147,13 @@ class PemilihController extends Controller
     public function destroy(User $user)
     {
         if($user->id === auth()->user()->id){
-            return redirect()->back()->withErrors(['Anda tidak dapat menonaktifkan diri anda sendiri.']);
+            return response()->json('error');
         }
         
         $user->status = 0;
         $user->save();
-        return redirect()->back()->with('success', 'Berhasil menonaktifkan user');
+        Session::flash('success', 'Berhasil menonaktifkan user');
+        return response()->json('success');
     }
 
     public function getUserVote(Request $request)

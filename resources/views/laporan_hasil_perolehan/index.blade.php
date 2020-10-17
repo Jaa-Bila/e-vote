@@ -37,7 +37,8 @@
                     <th class="tg-cly1" rowspan="3">Desa</th>
                     <th class="tg-nrix" colspan="3" rowspan="2">DPT</th>
                     <th class="tg-baqh" colspan="4">Surat Suara</th>
-                    <th class="tg-0lax" colspan="2">Perolehan Suara</th>
+                    <th class="tg-0lax" colspan="{{count($candidateVoters) * 2}}">Perolehan Suara</th>
+                    <th class='tg-cly1' rowspan="3">Partisipasi (%)</th>
                   </tr>
                   <tr>
                     <td class="tg-0lax" rowspan="2">Sah</td>
@@ -74,6 +75,7 @@
                       <td>{{$candidateVoter['count']}}</td>
                       <td>{{$candidateVoter['presentase']}}</td>
                     @endforeach
+                    <td>0%</td>
                   </tr>
                 </tbody>
                 </table>
