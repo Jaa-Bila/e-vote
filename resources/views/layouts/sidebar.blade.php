@@ -29,7 +29,7 @@
                     </li>
                 @endif
                 <li class="nav-header">Menu Utama</li>
-                @if (in_array('ADMIN', Session::get('user_roles')))
+                @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is("*dashboard") ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>

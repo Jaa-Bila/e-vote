@@ -75,7 +75,7 @@
                       <td>{{$candidateVoter['count']}}</td>
                       <td>{{$candidateVoter['presentase']}}</td>
                     @endforeach
-                    <td>0%</td>
+                    <td>{{count($voters) / count($users)}}</td>
                   </tr>
                 </tbody>
                 </table>
