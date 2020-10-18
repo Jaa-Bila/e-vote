@@ -43,7 +43,11 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware('auth
 Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
     Route::prefix('/pemilih')->group(function(){
         Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
+        Route::post('/activate/{user}', [PemilihController::class, 'activate'])->name('pemilih.activate');
+        Route::get('/{user}', [PemilihController::class, 'edit'])->name('pemilih.edit');
+        Route::get('{user}/show', [PemilihController::class, 'show'])->name('pemilih.show');
         Route::post('/foto', [PemilihController::class, 'fotoPengawas'])->name('pemilih.foto_pengawas');
+        Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
         Route::get('/user/voted', [PemilihController::class, 'getUserVote'])->name('pemilih.voted');
         Route::get('/user/not-voted', [PemilihController::class, 'getUserNotVote'])->name('pemilih.not_voted');
     });
@@ -83,12 +87,8 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
     });
 
     Route::prefix('/pemilih')->group(function(){
-        Route::get('{user}/show', [PemilihController::class, 'show'])->name('pemilih.show');
         Route::get('/create', [PemilihController::class, 'create'])->name('pemilih.create');
-        Route::get('/{user}', [PemilihController::class, 'edit'])->name('pemilih.edit');
-        Route::post('/activate/{user}', [PemilihController::class, 'activate'])->name('pemilih.activate');
         Route::post('/', [PemilihController::class, 'store'])->name('pemilih.store');
-        Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
         Route::delete('/{user}', [PemilihController::class, 'destroy'])->name('pemilih.destroy');
     });
 
