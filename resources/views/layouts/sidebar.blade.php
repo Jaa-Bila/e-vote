@@ -36,6 +36,8 @@
                         <p>{{$menus[0]->name}}</p>
                     </a>
                 </li>
+                @endif
+                @if(in_array('ADMIN', Session::get('user_roles')))
                 <li class="nav-item">
                     <a href="{{route('admin.index')}}" class="nav-link {{ Request::is("*admin") ? 'active' : '' }}">
                         <i class="nav-icon fa fa-hdd"></i>
