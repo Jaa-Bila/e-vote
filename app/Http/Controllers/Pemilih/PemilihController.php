@@ -31,15 +31,15 @@ class PemilihController extends Controller
                 ->addColumn('action', function($row) {
                     $urlShow = route('pemilih.show', $row->id);
                     $urlEdit = route('pemilih.edit', $row->id);
-                    $button = '<a href="' . $urlEdit . '" class=" btn btn-warning" style="margin-right: 10px">Edit</a>'.
-                    '<a href="' . $urlShow . '" class=" btn btn-primary" style="margin-right: 10px">Show</a>';
+                    $button = '<a href="' . $urlEdit . '" class=" badge badge-warning" style="margin-right: 10px">Edit</a>'.
+                    '<a href="' . $urlShow . '" class=" badge badge-primary" style="margin-right: 10px">Show</a>';
                     if($row->status === 0){
-                        $button = $button . '<a href="#" class=" btn btn-info" id="confirm-user" onclick="confirmUser('. $row->id .')" style="margin-right: 10px">Confirm</a>';
+                        $button = $button . '<a href="#" class=" badge badge-info" id="confirm-user" onclick="confirmUser('. $row->id .')" style="margin-right: 10px">Confirm</a>';
                     }
                     $button = $button .
-                    '<a href="#" class="btn_cam btn btn-primary" style="margin-right: 10px" onclick="takeAPhoto(' . $row->id . ')" data-toggle="modal" data-target="#modal-lg" data-backdrop="static">Camera</a>';
+                    '<a href="#" class="badge_cam badge badge-primary" style="margin-right: 10px" onclick="takeAPhoto(' . $row->id . ')" data-toggle="modal" data-target="#modal-lg" data-backdrop="static"><i class="fa fa-camera" aria-hidden="true"></i>  Camera</a>';
                     if(in_array('ADMIN', Session::get('user_roles'))){
-                        $button = $button . '<a href="#" class=" btn btn-danger" id="delete-user" onclick="deleteUser('. $row->id .')" style="margin-right: 10px">Delete</a>';
+                        $button = $button . '<a href="#" class=" badge badge-danger" id="delete-user" onclick="deleteUser('. $row->id .')" style="margin-right: 10px">Delete</a>';
                     }
 
                     return $button;

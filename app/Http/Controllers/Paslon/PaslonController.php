@@ -45,24 +45,13 @@ class PaslonController extends Controller
                     $urlDelete = route('calon.destroy', $row->id);
                     $button = '';
                     if($row->status === 0){
-                        $button = $button . '<form action="' .  $urlActivate  . '" method="post">' .
-                            csrf_field()  .
-                            '<button class="btn btn-info" type="submit" onclick="return confirm(' .
-                            "'Are you want to activate $row->name ?')" .
-                            '" href="' .  $urlActivate  . '">Activate</button>' .
-                            '</form>';
+                        $button = $button . '<a href="#" class=" badge badge-info" id="confirm-user" onclick="confirmUser('. $row->id .')" style="margin-right: 10px">Confirm</a>';
                     }
-                    $button = $button . '<a href="' . $urlShow . '" class=" btn btn-info" style="margin-right: 10px">Show</a>'.
-                    '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>';
+                    $button = $button . '<a href="' . $urlShow . '" class=" badge badge-info" style="margin-right: 10px">Show</a>'.
+                    '<a href="' . $urlEdit . '" class=" badge badge-primary" style="margin-right: 10px">Edit</a>';
 
                     if(in_array('ADMIN', Session::get('user_roles'))){
-                        $button = $button .
-                        '<form action="' .  $urlDelete  . '" method="post">' .
-                        csrf_field()  . method_field("DELETE")  .
-                        '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
-                        "'Are you sure delete $row->name ?')" .
-                        '" href="' .  $urlDelete  . '">Delete</button>' .
-                        '</form>';  
+                        $button = $button . '<a href="#" class=" badge badge-danger" id="delete-user" onclick="deleteUser('. $row->id .')" style="margin-right: 10px">Delete</a>';
                     }
                     
                     return $button;
@@ -78,7 +67,8 @@ class PaslonController extends Controller
     {
         $user->status = 1;
         $user->save();
-        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
+        Session::flash('success', 'Berhasil mengkonfirmasi user');
+        return response()->json('success');
     }
 
     public function show(User $user){
@@ -186,8 +176,14 @@ class PaslonController extends Controller
 
     public function destroy(User $user)
     {
+        if($user->id === auth()->user()->id){
+            return response()->json('error');
+        }
+        
         $user->status = 0;
         $user->save();
-        return redirect()->back()->with('success', 'Berhasil menonaktifkan user');
+
+        Session::flash('success', 'Berhasil menonaktifkan user');
+        return response()->json('success');
     }
 }

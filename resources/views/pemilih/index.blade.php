@@ -66,33 +66,31 @@
             render: 'image',
             columns: [{
                     data: 'no_urut',
-                    name: 'no_urut'
+                    name: 'no_urut',
                 },
                 {
                     data: 'no_ktp',
-                    name: 'no_ktp'
+                    name: 'no_ktp',
                 },
                 {
                     data: 'name',
-                    name: 'name'
+                    name: 'name',
                 },
                 {
                     data: 'jenis_kelamin',
-                    name: 'jenis_kelamin'
+                    name: 'jenis_kelamin',
                 },
                 {
                     data: 'nik',
-                    name: 'nik'
+                    name: 'nik',
                 },
                 {
                     data: 'pekerjaan',
-                    name: 'pekerjaan'
+                    name: 'pekerjaan',
                 },
                 {
                     data: 'image',
                     name: 'image',
-                    orderable: false,
-                    searchable: false
                 },
                 {
                     data: 'action',

@@ -18,12 +18,12 @@
                 <table class="data-table display nowrap" style="width:100%">
                     <thead>
                     <tr>
-                        <th>No Urut Calon</th>
+                        <th>#</th>
                         <th>Nama</th>
                         <th>TTL</th>
                         <th>Agama</th>
                         <th>L/P</th>
-                        <th>Pendidikan Terakhir</th>
+                        <th>Pendidikan</th>
                         <th>Pekerjaan</th>
                         <th>Desa</th>
                         <th>Foto</th>
@@ -63,5 +63,33 @@
                 ]
             });
         });
+    </script>
+    <script>
+    function confirmUser(id) {
+        $.ajax({
+            type: 'POST',
+            url: `/calon/activate/${id}`,
+            data: {
+                _token: "{{csrf_token()}}"
+            },
+            success: () => {
+                window.location.reload()
+            }
+        })
+    }
+    </script>
+    <script>
+    function deleteUser(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: `/calon/${id}`,
+            data: {
+                _token: "{{csrf_token()}}"
+            },
+            success: () => {
+                window.location.reload()
+            }
+        })
+    }
     </script>
 @endsection
