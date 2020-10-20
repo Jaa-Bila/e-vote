@@ -28,7 +28,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="{{route('login')}}">
+                <a class="nav-link" href="{{route('login')}}">
                     <button class="btn btn-sm" style="width: 100px;">Login</button>
                 </a>
             </li>
