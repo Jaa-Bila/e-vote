@@ -19,7 +19,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Upload Gallery</label>
                     <div class="col-sm-10">
-                        <input id="upload_image" type="file" name="image" class="form-control" required>
+                        <input id="upload_image" type="file" name="image" class="form-control" required accept="image/*,video/*">
                     </div>
                 </div>
 

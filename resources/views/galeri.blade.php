@@ -22,8 +22,14 @@
                         <div class="col-sm-2">
                             <a href="{{asset($gallery->path)}}" data-toggle="lightbox"
                                 data-title="{{$gallery->title}}" data-gallery="gallery">
+                                @if(explode('.', $gallery->path)[1] === 'jpg' || explode('.', $gallery->path)[1] === 'png' || explode('.', $gallery->path)[1] === 'jpeg')
                                 <img src="{{asset($gallery->path)}}" class="img-fluid mb-2"
                                     alt="{{$gallery->title}}" />
+                                @else
+                                <video width="320" height="240" autoplay="autoplay">
+                                    <source src="{{asset($gallery->path)}}" type="video/mp4">
+                                </video>
+                                @endif
                             </a>
                         </div>
                         @endforeach
