@@ -4,22 +4,18 @@
     <div class="col-12 text-center">
         <h1 style="font-weight: bold">CALON KEPALA DESA</h1>
     </div>
-    <div class="row justify-content-center" style="margin-top: 24px">
+    <div class="row justify-content-around" style="margin-top: 24px">
         @foreach($datas as $data)
-            <div class="col-md-3">
+            <div class="col-md-3" style="max-width: 300px">
                 <div class="card card-widget widget-user">
-                    <div class="widget-user-header bg-info">
-                        <h3 class="widget-user-username text-center">{{$data->name}}</h3>
-                    </div>
-                    <div class="widget-user-image text-center">
-                        <img class="mt-3 rounded-circle elevation-2" style="width: 100px; height: 100px" src="{{asset($data->foto)}}" alt="User Avatar">
+                    <div class="card-footer text-center">
+                        <img class="mt-3 card-img-top" style="height: 300px" src="{{asset($data->foto)}}" alt="User Avatar">
                     </div>
                     <div class="card-footer">
-                        <div class="row" style="height: 300px">
-                            <div class="col-12 text-center">
-                                <h6 class="text-bold mt-5" >Visi Misi:</h6>
-                                <p style="max-height: 200px;overflow-y: scroll;margin-top:4px">{{$data->visi_misi}}</p>
-                                <button type="button" onclick="takeAPhoto({{$data->id}})" class="btn btn-success" style="width: 200px;" data-toggle="modal" data-target="#modal-lg" data-backdrop="static" data-keyboard="false">Pilih!</button>
+                        <div class="row align-items-end" style="height: 175px">
+                            <div class="col-12 text-center mb-5">
+                                <h3 class="text-center text-bold">{{$data->name}}</h3>
+                                <button type="button" onclick="takeAPhoto({{$data->id}})" class="btn btn-success text-center" style="width: 120px;" data-toggle="modal" data-target="#modal-lg" data-backdrop="static" data-keyboard="false">PILIH CALON</button>
                             </div>
                         </div>
                     </div>
