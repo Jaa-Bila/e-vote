@@ -31,6 +31,7 @@
             <img src="{{asset('images/login.png')}}" alt="logo" width="300">
         </div>
         <div class="col-8 my-auto">
+            @include('message_info')
             <h1>Silahkan Login</h1>
             <form action="{{route('login')}}" method="post" style="width: 100%">
                 @csrf

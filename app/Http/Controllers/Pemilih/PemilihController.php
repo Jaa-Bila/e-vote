@@ -214,11 +214,17 @@ class PemilihController extends Controller
         return view('pemilih.daftar_belum_pilih');
     }
 
-    public function votePage()
+    public function votePage(Request $request)
     {
         if(auth()->user()->foto_pengawas === null)
         {
-            return redirect()->back()->withErrors(['Anda belum memiliki foto dari pengawas.']);
+            auth()->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect()->route('login')->withErrors(['Anda belum memiliki foto dari pengawas.']);
         }
 
         $paslon = DB::table('users')
