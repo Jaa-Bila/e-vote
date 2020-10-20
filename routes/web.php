@@ -36,21 +36,7 @@ Route::get('/jumlah-pemilih', [HomeController::class, 'jumlahPemilih'])->name('j
 Route::get('/galeri', [HomeController::class, 'galeri'])->name('galeri');
 
 Route::get('/home', function () {
-    return redirect( route('dashboard')) ;
-});
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware('auth')->name('dashboard');
-
-Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
-    Route::prefix('/pemilih')->group(function(){
-        Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
-        Route::post('/activate/{user}', [PemilihController::class, 'activate'])->name('pemilih.activate');
-        Route::get('/{user}', [PemilihController::class, 'edit'])->name('pemilih.edit');
-        Route::get('{user}/show', [PemilihController::class, 'show'])->name('pemilih.show');
-        Route::post('/foto', [PemilihController::class, 'fotoPengawas'])->name('pemilih.foto_pengawas');
-        Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
-        Route::get('/user/voted', [PemilihController::class, 'getUserVote'])->name('pemilih.voted');
-        Route::get('/user/not-voted', [PemilihController::class, 'getUserNotVote'])->name('pemilih.not_voted');
-    });
+    return redirect('dashboard') ;
 });
 
 Route::middleware(['auth', 'role:ADMIN'])->group(function() {
@@ -129,6 +115,21 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
         Route::delete('/marquee/{marqueeText}', [PengaturanWeb::class, 'deleteMarquee'])->name('pengaturan_web.deleteMarquee');
         Route::delete('/carousel/{landingCarouselPhoto}', [PengaturanWeb::class, 'deleteCarousel'])->name('pengaturan_web.deleteCarousel');
         Route::delete('/gallery/{gallery}', [PengaturanWeb::class, 'deleteGallery'])->name('pengaturan_web.deleteGallery');
+    });
+});
+
+Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware('auth')->name('dashboard');
+    
+    Route::prefix('/pemilih')->group(function(){
+        Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
+        Route::post('/activate/{user}', [PemilihController::class, 'activate'])->name('pemilih.activate');
+        Route::get('/{user}', [PemilihController::class, 'edit'])->name('pemilih.edit');
+        Route::get('{user}/show', [PemilihController::class, 'show'])->name('pemilih.show');
+        Route::post('/foto', [PemilihController::class, 'fotoPengawas'])->name('pemilih.foto_pengawas');
+        Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
+        Route::get('/user/voted', [PemilihController::class, 'getUserVote'])->name('pemilih.voted');
+        Route::get('/user/not-voted', [PemilihController::class, 'getUserNotVote'])->name('pemilih.not_voted');
     });
 });
 

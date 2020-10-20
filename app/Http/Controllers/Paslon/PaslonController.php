@@ -26,7 +26,7 @@ class PaslonController extends Controller
             ->select('users.*')
             ->where(['user_role.role_id' => 3, 'users.id' => auth()->user()->id])->get();
         }
-        
+
 
         if ($request->ajax()) {
             return DataTables::of($data)
@@ -41,8 +41,6 @@ class PaslonController extends Controller
                 ->addColumn('action', function($row) {
                     $urlShow = route('calon.show', $row->id);
                     $urlEdit = route('calon.edit', $row->id);
-                    $urlActivate = route('calon.activate', $row->id);
-                    $urlDelete = route('calon.destroy', $row->id);
                     $button = '';
                     if($row->status === 0){
                         $button = $button . '<a href="#" class=" badge badge-info" id="confirm-user" onclick="confirmUser('. $row->id .')" style="margin-right: 10px">Confirm</a>';
@@ -53,7 +51,7 @@ class PaslonController extends Controller
                     if(in_array('ADMIN', Session::get('user_roles'))){
                         $button = $button . '<a href="#" class=" badge badge-danger" id="delete-user" onclick="deleteUser('. $row->id .')" style="margin-right: 10px">Delete</a>';
                     }
-                    
+
                     return $button;
                 })
                 ->rawColumns(['image', 'action'])
@@ -177,9 +175,10 @@ class PaslonController extends Controller
     public function destroy(User $user)
     {
         if($user->id === auth()->user()->id){
+            Session::flash('error', 'Anda tidak bisa menonaktifkan diri anda sendiri');
             return response()->json('error');
         }
-        
+
         $user->status = 0;
         $user->save();
 

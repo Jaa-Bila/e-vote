@@ -6,6 +6,14 @@
 </div>
 @endif
 
+@if(session()->has('error'))
+    <div class="pt-2">
+        <div class="alert alert-danger">
+            {{session()->get('error')}}
+        </div>
+    </div>
+@endif
+
 @if ($errors->any())
 <div class="pt-2">
     <div class="alert alert-danger">

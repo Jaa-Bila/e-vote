@@ -59,4 +59,32 @@
             });
         });
     </script>
+    <script>
+        function confirmUser(id) {
+            $.ajax({
+                type: 'POST',
+                url: `/pengawas/activate/${id}`,
+                data: {
+                    _token: "{{csrf_token()}}"
+                },
+                success: () => {
+                    window.location.reload()
+                }
+            })
+        }
+    </script>
+    <script>
+        function deleteUser(id) {
+            $.ajax({
+                type: 'DELETE',
+                url: `/pengawas/${id}`,
+                data: {
+                    _token: "{{csrf_token()}}"
+                },
+                success: () => {
+                    window.location.reload()
+                }
+            })
+        }
+    </script>
 @endsection

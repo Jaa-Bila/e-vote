@@ -31,15 +31,16 @@ class PemilihController extends Controller
                 ->addColumn('action', function($row) {
                     $urlShow = route('pemilih.show', $row->id);
                     $urlEdit = route('pemilih.edit', $row->id);
-                    $button = '<a href="' . $urlEdit . '" class=" badge badge-warning" style="margin-right: 10px">Edit</a>'.
-                    '<a href="' . $urlShow . '" class=" badge badge-primary" style="margin-right: 10px">Show</a>';
+                    $button = '<a href="' . $urlShow . '" class=" badge badge-primary" style="margin-right: 10px">Show</a>';
                     if($row->status === 0){
                         $button = $button . '<a href="#" class=" badge badge-info" id="confirm-user" onclick="confirmUser('. $row->id .')" style="margin-right: 10px">Confirm</a>';
                     }
                     $button = $button .
                     '<a href="#" class="badge_cam badge badge-primary" style="margin-right: 10px" onclick="takeAPhoto(' . $row->id . ')" data-toggle="modal" data-target="#modal-lg" data-backdrop="static"><i class="fa fa-camera" aria-hidden="true"></i>  Camera</a>';
                     if(in_array('ADMIN', Session::get('user_roles'))){
-                        $button = $button . '<a href="#" class=" badge badge-danger" id="delete-user" onclick="deleteUser('. $row->id .')" style="margin-right: 10px">Delete</a>';
+                        $button = $button .
+                            '<a href="' . $urlEdit . '" class=" badge badge-warning" style="margin-right: 10px">Edit</a>' .
+                            '<a href="#" class=" badge badge-danger" id="delete-user" onclick="deleteUser('. $row->id .')" style="margin-right: 10px">Delete</a>';
                     }
 
                     return $button;
@@ -147,9 +148,10 @@ class PemilihController extends Controller
     public function destroy(User $user)
     {
         if($user->id === auth()->user()->id){
+            Session::flash('error', 'Anda tidak bisa menonaktifkan diri anda sendiri');
             return response()->json('error');
         }
-        
+
         $user->status = 0;
         $user->save();
         Session::flash('success', 'Berhasil menonaktifkan user');
@@ -162,7 +164,7 @@ class PemilihController extends Controller
                 ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
                 ->select('users.*', 'user_votes.*')
                 ->get();
-                
+
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()

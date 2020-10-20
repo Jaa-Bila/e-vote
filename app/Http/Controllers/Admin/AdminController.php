@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -29,26 +30,14 @@ class AdminController extends Controller
                 ->addColumn('action', function($row) {
                     $urlShow = route('admin.show', $row->id);
                     $urlEdit = route('admin.edit', $row->id);
-                    $urlActivate = route('admin.activate', $row->id);
-                    $urlDelete = route('admin.destroy', $row->id);
                     $button = '';
                     if($row->status === 0){
-                        $button = $button . '<form action="' .  $urlActivate  . '" method="post">' .
-                            csrf_field()  .
-                            '<button class="btn btn-info" type="submit" onclick="return confirm(' .
-                            "'Are you want to activate $row->name ?')" .
-                            '" href="' .  $urlActivate  . '">Activate</button>' .
-                            '</form>';
+                        $button = $button . '<a href="#" class=" badge badge-info" id="confirm-user" onclick="confirmUser('. $row->id .')" style="margin-right: 10px">Confirm</a>';
                     }
-                    $button = $button .
-                        '<form action="' .  $urlDelete  . '" method="post">' .
-                        '<a href="' . $urlShow . '" class=" btn btn-info" style="margin-right: 10px">Show</a>' .
-                        '<a href="' . $urlEdit . '" class=" btn btn-primary" style="margin-right: 10px">Edit</a>' .
-                        csrf_field()  . method_field("DELETE")  .
-                        '<button class="btn btn-danger" type="submit" onclick="return confirm(' .
-                        "'Are you sure delete $row->name ?')" .
-                        '" href="' .  $urlDelete  . '">Delete</button>' .
-                        '</form>';
+                    $button = $button . '<a href="' . $urlShow . '" class=" badge badge-info" style="margin-right: 10px">Show</a>'.
+                    '<a href="' . $urlEdit . '" class=" badge badge-primary" style="margin-right: 10px">Edit</a>' .
+                    '<a href="#" class=" badge badge-danger" id="delete-user" onclick="deleteUser('. $row->id .')" style="margin-right: 10px">Delete</a>';
+
                     return $button;
                 })
                 ->rawColumns(['image', 'action'])
@@ -72,7 +61,8 @@ class AdminController extends Controller
     {
         $user->status = 1;
         $user->save();
-        return redirect()->back()->with('success', 'Berhasil mengaktifkan user');
+        Session::flash('success', 'Berhasil mengkonfirmasi user');
+        return response()->json('success');
     }
 
     public function store(Request $request)
@@ -151,8 +141,14 @@ class AdminController extends Controller
 
     public function destroy(User $user)
     {
+        if($user->id === auth()->user()->id){
+            Session::flash('error', 'Anda tidak bisa menonaktifkan diri anda sendiri');
+            return response()->json('error');
+        }
+
         $user->status = 0;
         $user->save();
-        return redirect()->back()->with('success', 'Berhasil menonaktifkan user');
+        Session::flash('success', 'Berhasil menonaktifkan user');
+        return response()->json('success');
     }
 }
