@@ -152,6 +152,12 @@ class PemilihController extends Controller
             return response()->json('error');
         }
 
+        if(count(Session::get('user_roles')) < 2){
+            $user->delete();
+            Session::flash('success', 'Berhasil menghapus user');
+            return response()->json('success');
+        }
+
         $user->status = 0;
         $user->save();
         Session::flash('success', 'Berhasil menonaktifkan user');
@@ -248,17 +254,9 @@ class PemilihController extends Controller
                 $user->save();
             }
 
-            $imagename = "vote-".Carbon::now()->format('dmyHis') . ".png";
-            $imagePath = 'storage/image/' . $imagename;
-            $img = str_replace('data:image/png;base64,', '', $request->foto_selfie);
-            $img = str_replace(' ', '+', $img);
-            $data = base64_decode($img);
-            file_put_contents(public_path($imagePath), $data);
-
             DB::table('user_votes')->insert([
                 'user_id' => $request->user_id,
-                'paslon_id' => $request->paslon_id,
-                'vote_selfie' => $imagePath
+                'paslon_id' => $request->paslon_id
             ]);
 
             auth()->logout();

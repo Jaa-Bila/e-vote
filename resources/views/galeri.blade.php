@@ -2,10 +2,6 @@
 
 @section('title', 'Gallery')
 
-@section('css')
-    <link rel="stylesheet" href="{{asset('dist/plugins/ekko-lightbox/ekko-lightbox.css')}}">
-@endsection
-
 @section('content')
 <div class="container">
     <div class="content">
@@ -20,15 +16,14 @@
                     <div class="row justify-content-center">
                         @foreach($galleries as $gallery)
                         <div class="col-sm-2">
-                            <a href="{{asset($gallery->path)}}" data-toggle="lightbox"
-                                data-title="{{$gallery->title}}" data-gallery="gallery">
+                            <a href="{{asset($gallery->path)}}" data-toggle="modal" data-target="#modal-lg-{{$gallery->id}}">
                                 @if(explode('.', $gallery->path)[1] === 'jpg' || explode('.', $gallery->path)[1] === 'png' || explode('.', $gallery->path)[1] === 'jpeg')
-                                <img src="{{asset($gallery->path)}}" class="img-fluid mb-2"
-                                    alt="{{$gallery->title}}" />
+                                    <img src="{{asset($gallery->path)}}" class="img-fluid mb-2"
+                                         alt="{{$gallery->title}}" />
                                 @else
-                                <video width="320" height="240" autoplay="autoplay">
-                                    <source src="{{asset($gallery->path)}}" type="video/mp4">
-                                </video>
+                                    <video width="320" height="240" autoplay="autoplay">
+                                        <source src="{{asset($gallery->path)}}" type="video/mp4">
+                                    </video>
                                 @endif
                             </a>
                         </div>
@@ -38,19 +33,26 @@
             </div>
         </div>
     </div>
+    @foreach($galleries as $gallery)
+    <div class="modal fade" id="modal-lg-{{$gallery->id}}">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Gallery Item</h4>
+                </div>
+                <div class="modal-body">
+                    @if(explode('.', $gallery->path)[1] === 'jpg' || explode('.', $gallery->path)[1] === 'png' || explode('.', $gallery->path)[1] === 'jpeg')
+                        <img src="{{asset($gallery->path)}}" class="img-fluid mb-2"
+                             alt="{{$gallery->title}}" />
+                    @else
+                        <video width="320" height="240" autoplay="autoplay">
+                            <source src="{{asset($gallery->path)}}" type="video/mp4">
+                        </video>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 </div>
-@endsection
-
-@section('js')
-<script src="{{asset('dist/plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
-<script>
-    $(function () {
-      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-        event.preventDefault();
-        $(this).ekkoLightbox({
-          alwaysShowClose: true
-        });
-      });
-    })
-  </script>
 @endsection

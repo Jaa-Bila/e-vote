@@ -42,7 +42,6 @@
                   </tr>
                   <tr>
                     <td class="tg-0lax" rowspan="2">Sah</td>
-                    <td class="tg-baqh" rowspan="2">Tidak<br>Sah</td>
                     <td class="tg-baqh" rowspan="2">Tdk<br>Digunakan</td>
                     <td class="tg-0lax" rowspan="2">Jumlah</td>
                     @foreach($candidateVoters as $key=>$candidateVoter)
@@ -68,7 +67,6 @@
                     <td>{{$femaleUsers}}</td>
                     <td>{{$maleUsers + $femaleUsers}}</td>
                     <td>{{count($voters)}}</td>
-                    <td>{{$userNotVote}}</td>
                     <td>{{$userNotVote}}</td>
                     <td>{{$maleUsers + $femaleUsers}}</td>
                     @foreach($candidateVoters as $candidateVoter)

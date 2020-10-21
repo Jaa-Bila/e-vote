@@ -118,8 +118,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @foreach($candidates as $index=>$candidate)
                             <div class="col-md-4">
                                 <img class="d-block w-100"
-                                    src="{{asset($candidate->foto)}}"
-                                    alt="Foto Kandidat {{$index + 1}}">
+                                    src="{{$candidate->foto_pengawas !== null ? asset($candidate->foto_pengawas) : asset('storage/image/user.jpg') }}"
+                                    alt="Foto Kandidat {{$index + 1}}" style="height: 375px">
                                     <h5 class="text-center mt-3">Calon {{$index + 1}}</h5>
                             </div>
                             @endforeach

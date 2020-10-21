@@ -32,7 +32,7 @@ class PaslonController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('image', function($row) {
-                    $url = asset($row->foto);
+                    $url = $row->foto_pengawas !== null ? asset($row->foto_pengawas) : asset('storage/image/user.jpg');
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
                 ->addColumn('ttl', function($row){
