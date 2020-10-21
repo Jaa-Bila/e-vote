@@ -36,7 +36,7 @@
                       <th class="tg-cly1" rowspan="3">Kecamatan</th>
                       <th class="tg-cly1" rowspan="3">Desa</th>
                       <th class="tg-nrix" colspan="3" rowspan="2">DPT</th>
-                      <th class="tg-baqh" colspan="4">Surat Suara</th>
+                      <th class="tg-baqh" colspan="3">Surat Suara</th>
                       <th class="tg-0lax" colspan="{{count($candidateVoters) * 2}}">Perolehan Suara</th>
                       <th class='tg-cly1' rowspan="3">Partisipasi (%)</th>
                     </tr>

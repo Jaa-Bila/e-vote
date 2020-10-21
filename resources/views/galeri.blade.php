@@ -21,7 +21,7 @@
                                     <img src="{{asset($gallery->path)}}" class="img-fluid mb-2"
                                          alt="{{$gallery->title}}" />
                                 @else
-                                    <video width="320" height="240" autoplay="autoplay">
+                                    <video width="320" height="240">
                                         <source src="{{asset($gallery->path)}}" type="video/mp4">
                                     </video>
                                 @endif
@@ -40,12 +40,12 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Gallery Item</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     @if(explode('.', $gallery->path)[1] === 'jpg' || explode('.', $gallery->path)[1] === 'png' || explode('.', $gallery->path)[1] === 'jpeg')
                         <img src="{{asset($gallery->path)}}" class="img-fluid mb-2"
                              alt="{{$gallery->title}}" />
                     @else
-                        <video width="320" height="240" autoplay="autoplay">
+                        <video autoplay="autoplay">
                             <source src="{{asset($gallery->path)}}" type="video/mp4">
                         </video>
                     @endif
