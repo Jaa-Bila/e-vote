@@ -255,7 +255,7 @@ class PemilihController extends Controller
             }
 
             DB::table('user_votes')->insert([
-                'user_id' => $request->user_id,
+                'user_id' => $user->id,
                 'paslon_id' => $request->paslon_id
             ]);
 

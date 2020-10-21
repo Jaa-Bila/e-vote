@@ -19,12 +19,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
-@if(count(Session::get('user_roles')) !== 1)
 <div class="wrapper">
     @include('layouts.header')
     @include('layouts.sidebar')
 
-    <div class="content-wrapper">   
+    <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -43,14 +42,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     @include('layouts.footer')
 </div>
-@else
-<div class="content">
-    <div class="container-fluid">
-            @yield('content')
-    </div>
-</div>
-@include('layouts.footer')
-@endif
 
 <script src="{{ asset('dist/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('dist/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
