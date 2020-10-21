@@ -35,6 +35,7 @@ Route::get('/panduan-memilih', [HomeController::class, 'panduanMemilih'])->name(
 Route::get('/jumlah-pemilih', [HomeController::class, 'jumlahPemilih'])->name('jumlah_pemilih');
 Route::get('/galeri', [HomeController::class, 'galeri'])->name('galeri');
 
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 Route::get('/home', function () {
     return redirect('dashboard') ;
 });
@@ -119,8 +120,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function() {
 });
 
 Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
-    Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware('auth')->name('dashboard');
-    
+
     Route::prefix('/pemilih')->group(function(){
         Route::get('/', [PemilihController::class, 'index'])->name('pemilih.index');
         Route::post('/activate/{user}', [PemilihController::class, 'activate'])->name('pemilih.activate');

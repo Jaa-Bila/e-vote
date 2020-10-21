@@ -51,7 +51,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
     </div>
 </div>
-@include('layouts.footer')
+<!-- Main Footer -->
+<footer class="main-footer" style='margin: 0; position: fixed; bottom: 0; width: 100%'>
+    <!-- Default to the left -->
+    <strong>Copyright © {{date("Y")}} </strong> All rights reserved
+</footer>
+<!-- /.footer -->
+
 
     <script src="{{ asset('dist/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('dist/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
