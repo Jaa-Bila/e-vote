@@ -63,7 +63,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                         @endforeach
                     </div>
-                    @endsection
                 </div>
             </div>
         </div>
