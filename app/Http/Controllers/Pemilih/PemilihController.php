@@ -174,10 +174,6 @@ class PemilihController extends Controller
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->editColumn('image', function($row) {
-                    $url = asset($row->vote_selfie);
-                    return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
-                })
                 ->editColumn('real_image', function($row){
                     $url = asset($row->foto);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
@@ -186,7 +182,7 @@ class PemilihController extends Controller
                     $url = asset($row->foto_pengawas);
                     return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
-                ->rawColumns(['image', 'real_image', 'pengawas_image'])
+                ->rawColumns(['real_image', 'pengawas_image'])
                 ->make(true);
         }
 
