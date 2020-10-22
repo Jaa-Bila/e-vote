@@ -152,15 +152,8 @@ class PemilihController extends Controller
             return response()->json('error');
         }
 
-        if(count(Session::get('user_roles')) < 2){
-            $user->delete();
-            Session::flash('success', 'Berhasil menghapus user');
-            return response()->json('success');
-        }
-
-        $user->status = 0;
-        $user->save();
-        Session::flash('success', 'Berhasil menonaktifkan user');
+        $user->delete();
+        Session::flash('success', 'Berhasil menghapus user');
         return response()->json('success');
     }
 

@@ -96,7 +96,7 @@ class PengawasController extends Controller
             'status' => 1
         ]);
 
-        $user->roles()->attach([2, 4]);
+        $user->roles()->attach([2]);
 
         return redirect()->route('pengawas.index')->with('success', 'Berhasil menambahkan user');
     }
@@ -148,9 +148,8 @@ class PengawasController extends Controller
             return response()->json('error');
         }
 
-        $user->status = 0;
-        $user->save();
-        Session::flash('success', 'Berhasil menonaktifkan user');
+        $user->delete();
+        Session::flash('success', 'Berhasil menghapus user');
         return response()->json('success');
     }
 }

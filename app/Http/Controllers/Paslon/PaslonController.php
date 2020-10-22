@@ -179,10 +179,8 @@ class PaslonController extends Controller
             return response()->json('error');
         }
 
-        $user->status = 0;
-        $user->save();
-
-        Session::flash('success', 'Berhasil menonaktifkan user');
+        $user->delete();
+        Session::flash('success', 'Berhasil menghapus user');
         return response()->json('success');
     }
 }

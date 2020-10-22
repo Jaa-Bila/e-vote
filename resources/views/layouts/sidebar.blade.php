@@ -17,7 +17,7 @@
         </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                @if(auth()->user()->vote == null)
+                @if(auth()->user()->vote == null && !in_array('ADMIN', Session::get('user_roles')) && !in_array('PENGAWAS', Session::get('user_roles')))
                     <li class="nav-item">
                         <a href="{{route('pemilih.vote_page')}}" class="nav-link">
                             <button class="btn btn-success" style="width: 100%">
@@ -65,7 +65,7 @@
                         <i class="nav-icon fa fa-hdd"></i>
                         <p>{{$menus[4]->name}}</p>
                     </a>
-                </li>               
+                </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>

@@ -27,6 +27,7 @@
       </div>
       @endforeach
     @endif
+    @if(!in_array('PASLON', Session::get('user_roles')))
     <div class="col-3 col-sm-6 col-md-3">
       <div class="small-box bg-info">
         <div class="inner">
@@ -64,6 +65,7 @@
         <a href="{{route('pemilih.not_voted')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
+    @endif
   </div>
 </div>
 @endsection

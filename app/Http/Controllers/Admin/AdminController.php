@@ -94,7 +94,7 @@ class AdminController extends Controller
             'status' => 1
         ]);
 
-        $user->roles()->attach([1, 4]);
+        $user->roles()->attach([1]);
 
         return redirect()->route('admin.index')->with('success', 'Berhasil menambahkan user');
     }
@@ -146,9 +146,8 @@ class AdminController extends Controller
             return response()->json('error');
         }
 
-        $user->status = 0;
-        $user->save();
-        Session::flash('success', 'Berhasil menonaktifkan user');
+        $user->delete();
+        Session::flash('success', 'Berhasil menghapus user');
         return response()->json('success');
     }
 }
