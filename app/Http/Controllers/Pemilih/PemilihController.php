@@ -193,6 +193,10 @@ class PemilihController extends Controller
             return !$voted->contains(function($vote) use ($user){
                  return $vote->user_id == $user->id;
             });
+        })->reject(function ($user){
+            return $user->roles->contains(function ($role){
+                return $role->id === 1 || $role->id === 2;
+            });
         });
 
         if ($request->ajax()) {

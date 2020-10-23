@@ -13,7 +13,11 @@ class LaporanHasilPerolehan extends Controller
     public function index()
     {
         $candidates = Role::find(3)->users;
-        $users = User::all();
+        $users = User::all()->reject(function ($user){
+            return $user->roles->contains(function ($role){
+                return $role->id === 1 || $role->id === 2;
+            });
+        });
 
         if(count($users) < 2){
             return redirect(route('dashboard'))->withErrors('Silahkan input data pemilih untuk membuka page laporan hasil perolehan.');
@@ -42,7 +46,7 @@ class LaporanHasilPerolehan extends Controller
             $candidateVoter = $voters->filter(function($vote) use ($candidate){
                 return $vote->paslon_id === $candidate->id;
             })->count();
-            
+
             array_push($candidateVoters, [
                 'name' => $candidate->name,
                 'count' => $candidateVoter,
@@ -87,7 +91,7 @@ class LaporanHasilPerolehan extends Controller
             $candidateVoter = $voters->filter(function($vote) use ($candidate){
                 return $vote->paslon_id === $candidate->id;
             })->count();
-            
+
             array_push($candidateVoters, [
                 'name' => $candidate->name,
                 'count' => $candidateVoter,
@@ -102,7 +106,7 @@ class LaporanHasilPerolehan extends Controller
             'femaleUsers' => $femaleUsers,
             'userNotVote' => $userNotVote,
             'candidateVoters' => $candidateVoters
-        ]);
+        ])->setPaper('a4', 'landscape');
         return $pdf->download('laporan.pdf');
     }
 }
