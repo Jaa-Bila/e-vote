@@ -107,7 +107,13 @@ class LoginController extends Controller
         }
 
         $roles = Session::get('user_roles');
-        if (in_array('PEMILIH', $roles) || !in_array('PASLON', $roles)) {
+        if(in_array('PASLON', $roles)){
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect()->intended($this->redirectTo);
+        }
+
+        if (in_array('PEMILIH', $roles)) {
             $this->redirectTo = route('pemilih.vote_page');
         }
 
