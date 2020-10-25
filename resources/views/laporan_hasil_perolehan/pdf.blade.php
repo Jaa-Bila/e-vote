@@ -61,8 +61,8 @@
                   <tbody>
                     <tr>
                       <td>1</td>
-                      <td>{{count($voters) >= 1 ? $voters[0]->kecamatan : ""}}</td>
-                    <td>{{count($voters) >= 1 ? $voters[0]->desa_kelurahan : ""}}</td>
+                      <td>{{count($users) >= 1 ? $users[1]->kecamatan : ""}}</td>
+                      <td>{{count($users) >= 1 ? $users[1]->desa_kelurahan : ""}}</td>
                       <td>{{$maleUsers}}</td>
                       <td>{{$femaleUsers}}</td>
                       <td>{{$maleUsers + $femaleUsers}}</td>

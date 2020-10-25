@@ -67,7 +67,12 @@ class LaporanHasilPerolehan extends Controller
     public function exportPDF()
     {
         $candidates = Role::find(3)->users;
-        $users = User::all();
+        $users = User::all()->reject(function ($user){
+            return $user->roles->contains(function ($role){
+                return $role->id === 1 || $role->id === 2;
+            });
+        });
+
         $voters = DB::table('users')
         ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
         ->get();

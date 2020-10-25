@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if (count($roles) < 2) {
+                if (in_array('PEMILIH', $roles) || !in_array('PASLON', $roles)) {
                     return redirect(route('pemilih.vote_page'));
                 }
                 return redirect(RouteServiceProvider::DASHBOARD);

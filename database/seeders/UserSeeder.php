@@ -36,6 +36,7 @@ class UserSeeder extends Seeder
             'pengalaman_organisasi' => 'Tidak ada',
             'keterangan_tambahan' => null,
             'foto' => 'storage/image/user.jpg',
+            'foto_pengawas' => 'storage/image/user.jpg',
             'status' => 1
         ]);
 
