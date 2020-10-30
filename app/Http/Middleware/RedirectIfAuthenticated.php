@@ -28,7 +28,7 @@ class RedirectIfAuthenticated
                 if(in_array('PASLON', $roles)){
                     return redirect(RouteServiceProvider::DASHBOARD);
                 }
-                if (in_array('PEMILIH', $roles)) {
+                if (in_array('USER', $roles)) {
                     return redirect(route('pemilih.vote_page'));
                 }
                 return redirect(RouteServiceProvider::DASHBOARD);

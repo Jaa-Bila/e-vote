@@ -113,7 +113,7 @@ class LoginController extends Controller
                 : redirect()->intended($this->redirectTo);
         }
 
-        if (in_array('PEMILIH', $roles)) {
+        if (in_array('USER', $roles)) {
             $this->redirectTo = route('pemilih.vote_page');
         }
 
