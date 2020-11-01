@@ -11,9 +11,16 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Upload Carousel</label>
+                    <label class="col-sm-2 col-form-label">Upload Banner</label>
                     <div class="col-sm-10">
                         <input id="upload_image" type="file" name="image" class="form-control" required accept="image/x-png,image/gif,image/jpeg">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Text Banner</label>
+                    <div class="col-sm-10">
+                        <textarea rows="10" name="text" class="form-control" placeholder="Text Banner" required></textarea>
                     </div>
                 </div>
 

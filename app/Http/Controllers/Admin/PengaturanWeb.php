@@ -147,8 +147,9 @@ class PengaturanWeb extends Controller
         $imagePath = 'storage/image/' . $imagename;
 
         LandingCarouselPhoto::create([
-            'path' => $imagePath
-        ]);
+            'path' => $imagePath,
+            'text' => $request->text
+            ]);
 
         return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil menambahkah foto carousel');
     }
@@ -197,7 +198,7 @@ class PengaturanWeb extends Controller
 
         return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil mengupdate data informasi pemilihan');
     }
-    
+
     public function updateMarquee(Request $request, MarqueeText $marqueeText)
     {
         $marqueeText->text = $request->text;

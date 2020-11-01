@@ -61,6 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="carousel-item @if($index === 0)active @endif">
                                                 <img class="d-block w-100" style="height:500px"
                                                     src="{{$landingCarousel->path}}">
+                                                <div style="z-index: 2; position: absolute; top: 10%; left: 5%; font-size: 30px">{{ $landingCarousel->text }}</div>
                                             </div>
                                         @endforeach
                                     </div>

@@ -42,6 +42,7 @@
                     <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Text</th>
                         <th>Gambar</th>
                         <th>Action</th>
                     </tr>
@@ -130,6 +131,7 @@
                 render: 'image',
                 columns: [
                     {data: 'id', name: 'id'},
+                    {data: 'text', name: 'text'},
                     {data: 'image', name: 'image'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
