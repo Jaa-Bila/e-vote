@@ -192,8 +192,23 @@ class PengaturanWeb extends Controller
 
     public function updateElectionInformation(Request $request, ElectionInformation $electionInformation)
     {
+        $image = $request->file('image');
+
+        $oldPhoto = explode('storage', $electionInformation->image)[1];
+
+        Storage::delete('/public' . $oldPhoto);
+
+        $extImage = $image->getClientOriginalExtension();
+        $imagename = Carbon::now()->format('dmYHis') . '.' . $extImage;
+
+        $image->move('storage/image/', $imagename);
+
+        $imagePath = 'storage/image/' . $imagename;
+
         $electionInformation->informasi = $request->informasi;
         $electionInformation->panduan = $request->panduan;
+        $electionInformation->image = $imagePath;
+        $electionInformation->video = $request->video;
         $electionInformation->save();
 
         return redirect(route('pengaturan_web.index'))->with('success', 'Berhasil mengupdate data informasi pemilihan');

@@ -39,5 +39,11 @@
         function reset(){
             $('#form_id').trigger("reset");
         }
+        $('#upload_image').on('change', function (e) {
+            if(this.files[0].size > 2097152){
+                alert("Ukuran foto terlalu besar (max. 2MB)");
+                this.value = "";
+            }
+        })
     </script>
 @endsection

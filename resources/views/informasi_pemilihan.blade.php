@@ -13,6 +13,14 @@
                 </article>
             </div>
         </div>
+        <div class="text-center">
+            <iframe width="480" height="640"
+                    src="{{$electionInformation->video}}">
+            </iframe>
+        </div>
+        <div class="text-center">
+            <img src="{{$electionInformation->image}}" width="480" height="640">
+        </div>
     </div>
 </div>
 @endsection
