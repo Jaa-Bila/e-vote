@@ -194,9 +194,10 @@ class PengaturanWeb extends Controller
     {
         $image = $request->file('image');
 
-        $oldPhoto = explode('storage', $electionInformation->image)[1];
-
-        Storage::delete('/public' . $oldPhoto);
+        if($electionInformation->image !== null){
+            $oldPhoto = explode('storage', $electionInformation->image)[1];
+            Storage::delete('/public' . $oldPhoto);
+        }
 
         $extImage = $image->getClientOriginalExtension();
         $imagename = Carbon::now()->format('dmYHis') . '.' . $extImage;
