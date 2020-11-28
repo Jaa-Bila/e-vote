@@ -61,8 +61,8 @@
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>{{count($users) >= 1 ? $users[1]->kecamatan : ""}}</td>
-                    <td>{{count($users) >= 1 ? $users[1]->desa_kelurahan : ""}}</td>
+                    <td>{{count($users) >= 1 ? $users->where('kecamatan', '<>', '')->first()->kecamatan : ""}}</td>
+                    <td>{{count($users) >= 1 ? $users->where('desa_kelurahan', '<>', '')->first()->desa_kelurahan : ""}}</td>
                     <td>{{$maleUsers}}</td>
                     <td>{{$femaleUsers}}</td>
                     <td>{{$maleUsers + $femaleUsers}}</td>
