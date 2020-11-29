@@ -4,9 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('dist/plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style type="text/css">
         .tg  {border-collapse:collapse;border-spacing:0;}
         .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -61,8 +58,8 @@
                   <tbody>
                     <tr>
                       <td>1</td>
-                        <td>{{count($users) >= 1 ? $users->where('kecamatan', '<>', '')->first()->kecamatan : ""}}</td>
-                        <td>{{count($users) >= 1 ? $users->where('desa_kelurahan', '<>', '')->first()->desa_kelurahan : ""}}</td>
+                      <td>{{count($users) >= 1 ? $users->where('kecamatan', '<>', '')->first()->kecamatan : ""}}</td>
+                      <td>{{count($users) >= 1 ? $users->where('desa_kelurahan', '<>', '')->first()->desa_kelurahan : ""}}</td>
                       <td>{{$maleUsers}}</td>
                       <td>{{$femaleUsers}}</td>
                       <td>{{$maleUsers + $femaleUsers}}</td>
