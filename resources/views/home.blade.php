@@ -23,7 +23,7 @@
           <div class="icon">
             <i class="ion ion-android-people"></i>
           </div>
-          <a href="#" onclick="toggleModal({{$index + 1}})" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="#" onclick="toggleModal({{$candidate->id}})" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
       @endforeach
@@ -117,13 +117,14 @@
     <script src="{{asset('dist/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('dist/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
     <script>
+        let table
         function toggleModal(id){
             $('#modal-lg').modal()
 
             let url = "{{ route('paslon.voter', ":id") }}"
             url = url.replace(':id', id);
 
-            $('.data-table').DataTable({
+            table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
@@ -160,5 +161,9 @@
                 ]
             });
         }
+
+        $('#modal-lg').on('hidden.bs.modal', function () {
+            table.destroy()
+        })
     </script>
 @endsection

@@ -286,11 +286,10 @@ class PemilihController extends Controller
     }
 
     public function getPaslonVoters(Request $request, $paslon_id){
-        $data = DB::table('users')
-            ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
-            ->where('paslon_id', $paslon_id)
-            ->select('users.*', 'user_votes.*')
-            ->get();
+        $data = User::with('vote')
+            ->whereHas('vote', function($query) use ($paslon_id){
+                $query->where('paslon_id', $paslon_id);
+            })->get();
 
         return DataTables::of($data)
             ->addIndexColumn()
