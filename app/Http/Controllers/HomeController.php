@@ -31,18 +31,12 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        // $candidates = Role::find(3)->users;
-        // $total_voters = UserRole::where('role_id', 4)->count();
-        // $votes = [];
-        // $candidate_labels = [];
-        // foreach ($candidates as $candidate) {
-        //     $candidate_vote = UserVote::where('paslon_id', $candidate->id)->count();
-        //     array_push($votes, $candidate_vote);
-        //     array_push($candidate_labels, $candidate->name);
-        // }
-        // $voted_voters = array_sum($votes);
         $candidates = Role::find(3)->users;
-        $users = User::all();
+        $users = User::all()->reject(function ($user){
+            return $user->roles->contains(function ($role){
+                return $role->id === 1 || $role->id === 2;
+            });
+        });
 
         $voters = DB::table('users')
         ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
@@ -59,12 +53,12 @@ class HomeController extends Controller
             $candidateVoteCount = $voters->filter(function($vote) use ($candidate){
                 return $vote->paslon_id === $candidate->id;
             })->count();
-            
+
             array_push($candidateVoteCounts, $candidateVoteCount);
         }
 
         return view('home')->with([
-            'users' => count($users),
+            'users' => $users,
             'candidates' => $candidates,
             'voters' => count($voters),
             'usersNotVotee' => $usersNotVote,

@@ -284,4 +284,22 @@ class PemilihController extends Controller
 
         return response()->json($request->all());
     }
+
+    public function getPaslonVoters(Request $request, $paslon_id){
+        $data = DB::table('users')
+            ->join('user_votes', 'users.id', '=', 'user_votes.user_id')
+            ->where('paslon_id', $paslon_id)
+            ->select('users.*', 'user_votes.*')
+            ->get();
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->editColumn('image', function($row){
+                $url = asset($row->foto);
+                return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
+            })
+            ->rawColumns(['image'])
+            ->make(true);
+
+    }
 }

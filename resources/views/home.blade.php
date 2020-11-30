@@ -4,7 +4,8 @@
 
 @section('css')
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
+<link rel="stylesheet" href="{{asset('dist/plugins/datatables/jquery.dataTables.min.css')}}">
+<link rel="stylesheet" href="{{asset('dist/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css')}}">
 @endsection
 
 @section('content')
@@ -22,7 +23,7 @@
           <div class="icon">
             <i class="ion ion-android-people"></i>
           </div>
-          <a href="{{route('calon.show', $candidate->id)}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="#" onclick="toggleModal({{$index + 1}})" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
       @endforeach
@@ -33,7 +34,7 @@
         <div class="inner">
           <h4>Data Pemilih</h4>
 
-          <h5>{{$users}}</h5>
+          <h5>{{$users->count()}}</h5>
         </div>
         <div class="icon">
           <i class="ion ion-ios-paper"></i>
@@ -45,7 +46,11 @@
       <div class="small-box bg-success">
         <div class="inner">
           <h4>Sudah Memilih</h4>
-          <h5>{{$voters / $users * 100}} %</h5>
+          @if($users->count() !== 0)
+                <h5>{{$voters / $users->count() * 100}} %</h5>
+          @else
+                <h5>0 %</h5>
+          @endif
         </div>
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
@@ -57,7 +62,11 @@
       <div class="small-box bg-success">
         <div class="inner">
           <h4>Belum Memilih</h4>
-          <h5>{{$usersNotVotee / $users * 100}} %</h5>
+            @if($users->count() !== 0)
+                <h5>{{$usersNotVotee / $users->count() * 100}} %</h5>
+            @else
+                <h5>0 %</h5>
+            @endif
         </div>
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
@@ -67,65 +76,89 @@
     </div>
     @endif
   </div>
+    <div class="modal fade" id="modal-lg" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Data Pemilih Calon</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="data-table display nowrap" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>No Urut</th>
+                            <th>ID</th>
+                            <th>Nama Pemilih</th>
+                            <th>L/P</th>
+                            <th>NIK</th>
+                            <th>Pekerjaan</th>
+                            <th>Foto</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 </div>
 @endsection
-{{-- @section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-<script>
-    var electionResultCanvas = $('#electionResultChart').get(0).getContext('2d')
-    var electionResultData = {
-      labels: {!! json_encode($candidate_labels) !!},
-      datasets: [
-        {
-          data: {!! json_encode($votes) !!},
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-        }
-      ]
-    }
-    var pieOptions = {
-      legend: {
-        display: true,
-        labels: {
-          boxWidth: 64,
-          fontSize: 16,
-          padding: 12
-        }
-      }
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    var electionResultChart = new Chart(electionResultCanvas, {
-      type: 'doughnut',
-      data: electionResultData,
-      options: pieOptions
-    })
 
-    var voterParticipationCanvas = $('#voterParticipationChart').get(0).getContext('2d')
-    var voterParticipationData = {
-      labels: ['Sudah memilih','Belum Memilih/Golput'],
-      datasets: [
-        {
-          data: [{!! json_encode($voted_voters) !!}, {!! json_encode($total_voters) - json_encode($voted_voters) !!}],
-          backgroundColor : ['#00a65a', '#f56954', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+@section('js')
+    <script src="{{asset('dist/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('dist/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script>
+        function toggleModal(id){
+            $('#modal-lg').modal()
+
+            let url = "{{ route('paslon.voter', ":id") }}"
+            url = url.replace(':id', id);
+
+            $('.data-table').DataTable({
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: url,
+                render: 'image',
+                columns: [{
+                    data: 'no_urut',
+                    name: 'no_urut',
+                },
+                    {
+                        data: 'no_ktp',
+                        name: 'no_ktp',
+                    },
+                    {
+                        data: 'name',
+                        name: 'name',
+                    },
+                    {
+                        data: 'jenis_kelamin',
+                        name: 'jenis_kelamin',
+                    },
+                    {
+                        data: 'nik',
+                        name: 'nik',
+                    },
+                    {
+                        data: 'pekerjaan',
+                        name: 'pekerjaan',
+                    },
+                    {
+                        data: 'image',
+                        name: 'image',
+                    }
+                ]
+            });
         }
-      ]
-    }
-    var pieOptions = {
-      legend: {
-        display: true,
-        labels: {
-          boxWidth: 64,
-          fontSize: 16,
-          padding: 12
-        }
-      }
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    var voterParticipationChart = new Chart(voterParticipationCanvas, {
-      type: 'doughnut',
-      data: voterParticipationData,
-      options: pieOptions
-    })
-</script>
-@endsection --}}
+    </script>
+@endsection

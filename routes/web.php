@@ -130,6 +130,7 @@ Route::middleware(['auth', 'role:PENGAWAS'])->group(function(){
         Route::put('/{user}', [PemilihController::class, 'update'])->name('pemilih.update');
         Route::get('/user/voted', [PemilihController::class, 'getUserVote'])->name('pemilih.voted');
         Route::get('/user/not-voted', [PemilihController::class, 'getUserNotVote'])->name('pemilih.not_voted');
+        Route::get('/paslon-voter/{id}', [PemilihController::class, 'getPaslonVoters'])->name('paslon.voter');
     });
 });
 
