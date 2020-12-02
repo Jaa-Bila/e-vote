@@ -14,7 +14,7 @@
             <a href="{{route('pemilih.create')}}"><button type="button" class="btn btn-primary">+ Tambahkan
                     Pemilih</button></a>
         @endif
-        
+
         @include('message_info')
         <div class="mt-3">
             <table class="data-table display nowrap" style="width:100%">
@@ -65,8 +65,8 @@
             ajax: "{{ route('pemilih.index') }}",
             render: 'image',
             columns: [{
-                    data: 'no_urut',
-                    name: 'no_urut',
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
                 },
                 {
                     data: 'no_ktp',

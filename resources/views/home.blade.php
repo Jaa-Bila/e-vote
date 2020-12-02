@@ -130,10 +130,11 @@
                 responsive: true,
                 ajax: url,
                 render: 'image',
-                columns: [{
-                    data: 'no_urut',
-                    name: 'no_urut',
-                },
+                columns: [
+                    {
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                    },
                     {
                         data: 'no_ktp',
                         name: 'no_ktp',
