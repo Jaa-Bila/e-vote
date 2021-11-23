@@ -69,6 +69,12 @@ class LoginController extends Controller
             ]);
         }
 
+        if ($user->status === 2) {
+            throw ValidationException::withMessages([
+                $this->username() => [trans('auth.sudah_vote')],
+            ]);
+        }
+
         auth()->loginUsingId($user->id);
 
         $roles = [];
