@@ -16,6 +16,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
