@@ -243,7 +243,7 @@ class PemilihController extends Controller
 
             if(count($roles) === 1 && in_array('USER', $roles))
             {
-                $user->status = 0;
+                $user->status = 2;
                 $user->save();
             }
 
@@ -254,7 +254,7 @@ class PemilihController extends Controller
 
             auth()->logout();
 
-            $request->session()->invalidate();
+            $request->session()->flash("success","Selamat anda sudah melakukan pemilihan.");
 
             $request->session()->regenerateToken();
         }catch (\Exception $e){
