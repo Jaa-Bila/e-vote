@@ -24,6 +24,18 @@
     </style>
 </head>
 <body>
+    @if(session()->has('success'))
+        <script type="text/javascript">
+            $(function () {
+                swal("Deleted!", "Data has been Deleted.", "success"),
+                    swal({
+                        title: {{ session()->get('success') }},
+                        text: "Your Custom or Dynamic SUccess message put here",
+                        type: "success"})
+
+            });
+        </script>
+    @endif
 <div class="container">
     <h1 class="mt-3 mb-0">Pemilihan Kades</h1>
     <div class="row h-100">

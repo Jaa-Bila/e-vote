@@ -13,9 +13,10 @@ return [
     |
     */
 
-    'failed' => 'Data KTP tidak ditemukan.',
+    'failed' => 'Data E-KTP Belum Terdaftar.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'already_logged_in' => 'Anda tidak bisa login kembali.',
     'not_active' => 'Akun anda belum aktif, silahkan hubungi admin',
-    'already_vote' => 'Akun anda sudah melakukan vote.'
+    'already_vote' => 'E-KTP Sudah Melakukan Pemilihan.',
+    'sudah_vote' => 'E-KTP Sudah Melakukan Pemilihan.'
 ];
