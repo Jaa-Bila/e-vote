@@ -47,7 +47,7 @@
         <div class="inner">
           <h4>Sudah Memilih</h4>
           @if($users->count() !== 0)
-                <h5>{{$voters / $users->count() * 100}} %</h5>
+                <h5>{{number_format((float)$voters / $users->count() * 100, 2, '.', '')}} %</h5>
           @else
                 <h5>0 %</h5>
           @endif
@@ -63,7 +63,7 @@
         <div class="inner">
           <h4>Belum Memilih</h4>
             @if($users->count() !== 0)
-                <h5>{{$usersNotVotee / $users->count() * 100}} %</h5>
+                <h5>{{number_format((float)$usersNotVotee / $users->count() * 100, 2, '.', '')}} %</h5>
             @else
                 <h5>0 %</h5>
             @endif
