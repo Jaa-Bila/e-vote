@@ -31,8 +31,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="col-md-3" style="max-width: 300px">
                     <div class="card card-widget widget-user">
                         <div class="card-footer text-center">
-                            <img class="mt-3 card-img-top" style="height: 300px" src="{{$data->foto_pengawas !== null ? asset($data->foto_pengawas) : asset('storage/image/user.jpg') }}"
-                                 alt="User Avatar">
+                            <div style="height: 200px">
+                                <button type="button" onclick="vote({{$data->id}})"
+                                    style="padding: 0;
+                                    border: none;
+                                    background: none;">
+                                    <img class="mt-3 card-img-top" style="height: 100%" src="{{$data->foto !== null ? asset($data->foto) : asset('storage/image/user.jpg') }}"
+                                     alt="User Avatar">
+                                </button>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <div class="row align-items-end" style="height: 175px">
