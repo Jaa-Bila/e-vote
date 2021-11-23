@@ -71,9 +71,9 @@
                     <td>{{$maleUsers + $femaleUsers}}</td>
                     @foreach($candidateVoters as $candidateVoter)
                       <td>{{$candidateVoter['count']}}</td>
-                      <td>{{$candidateVoter['presentase']}}</td>
+                      <td>{{number_format((float)$candidateVoter['presentase'], 2, '.', '')}} %</td>
                     @endforeach
-                    <td>{{count($voters) / count($users)}}</td>
+                    <td>{{number_format((float)count($voters) / count($users) * 100, 2, '.', '')}} %</td>
                   </tr>
                 </tbody>
                 </table>
