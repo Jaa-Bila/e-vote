@@ -18,8 +18,11 @@ Evote adalah aplikasi untuk pemilihan umum secara online
 ## Contributor
 
 **[Zainokta](https://github.com/zainokta)**
+
 **[Ja'a](https://github.com/Jaa1104)**
+
 **[Reyhan](https://github.com/reyreyhan)**
+
 **[Madevara](https://github.com/madevara24)**
 
 # E-Vote
