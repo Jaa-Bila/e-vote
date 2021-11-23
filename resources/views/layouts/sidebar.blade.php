@@ -28,6 +28,17 @@
                         </a>
                     </li>
                 @endif
+                @if(auth()->user()->vote == null && in_array('PASLON', Session::get('user_roles')))
+                    <li class="nav-item">
+                        <a href="{{route('pemilih.vote_page')}}" class="nav-link">
+                            <button class="btn btn-success" style="width: 100%">
+                                <i class="nav-icon fa fa-vote-yea"></i>
+                                <p>Pilih Kades</p>
+                            </button>
+
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-header">Menu Utama</li>
                 @if (in_array('ADMIN', Session::get('user_roles')) || in_array('PENGAWAS', Session::get('user_roles')))
                 <li class="nav-item">
